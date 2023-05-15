@@ -10,6 +10,7 @@ import javax.swing.JMenu;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import java.awt.CardLayout;
 
 public class PantallaPrincipal extends JFrame {
 
@@ -37,7 +38,11 @@ public class PantallaPrincipal extends JFrame {
 	public PantallaPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+<<<<<<< Updated upstream
 		setBounds(100, 100, 575, 358);
+=======
+		setBounds(100, 100, 777, 455);
+>>>>>>> Stashed changes
 
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -116,6 +121,6 @@ public class PantallaPrincipal extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLayout(new CardLayout(0, 0));
 	}
 }
