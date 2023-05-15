@@ -17,6 +17,23 @@ public class PantallaPrincipal extends JFrame {
 
 	private JPanel contentPane;
 	private CardLayout gestorPantallas;
+	
+	private JPanel creaEmple;
+	private JPanel fichaEmple;
+	private JPanel borraEmple;
+	private JPanel comisionEmple;
+	private JPanel creaSucu;
+	private JPanel borraSucu;
+	private JPanel fichaSucu;
+	private JPanel creaContr;
+	private JPanel fichaContr;
+	private JPanel tipoContr;
+	private JPanel creaCli;
+	private JPanel borraCli;
+	private JPanel creaInci;
+	private JPanel parteAsis;
+	private JPanel facturas;
+	private JPanel informes;
 
 	/**
 	 * Launch the application.
@@ -51,51 +68,106 @@ public class PantallaPrincipal extends JFrame {
 		JMenuItem submnuCrearEmpleado = new JMenuItem("Crear empleado");
 		submnuCrearEmpleado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				gestorPantallas.show(contentPane, "creaEmple");
 			}
 		});
 		mnuEmpleados.add(submnuCrearEmpleado);
 
 		JMenuItem submnuFichaEmpleados = new JMenuItem("Ver fichas de empleados");
+		submnuFichaEmpleados.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestorPantallas.show(contentPane, "fichaEmple");
+			}
+		});
 		mnuEmpleados.add(submnuFichaEmpleados);
 
 		JMenuItem submnuBorrarEmpleado = new JMenuItem("Borrar empleado");
+		submnuBorrarEmpleado.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestorPantallas.show(contentPane, "borraEmple");
+			}
+		});
 		mnuEmpleados.add(submnuBorrarEmpleado);
 
 		JMenuItem submnuComisiones = new JMenuItem("Comisiones");
+		submnuComisiones.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestorPantallas.show(contentPane, "comisionEmple");
+			}
+		});
 		mnuEmpleados.add(submnuComisiones);
 
 		JMenu mnuSucursal = new JMenu("Sucursal");
 		menuBar.add(mnuSucursal);
 
 		JMenuItem submnuCrearSucursal = new JMenuItem("Crear sucursal");
+		submnuCrearSucursal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestorPantallas.show(contentPane, "creaSucu");
+			}
+		});
 		mnuSucursal.add(submnuCrearSucursal);
 
 		JMenuItem submnuFichasSucursal = new JMenuItem("Ver fichas de sucursal");
+		submnuFichasSucursal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestorPantallas.show(contentPane, "creaEmple");
+			}
+		});
 		mnuSucursal.add(submnuFichasSucursal);
 
 		JMenuItem submnuBorrarSucursal = new JMenuItem("Borrar Sucursal");
+		submnuBorrarSucursal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestorPantallas.show(contentPane, "borraSucu");
+			}
+		});
 		mnuSucursal.add(submnuBorrarSucursal);
 
 		JMenu mnuContratos = new JMenu("Contratos");
 		menuBar.add(mnuContratos);
 
 		JMenuItem submnuContratoNuevo = new JMenuItem("Contrato nuevo");
+		submnuContratoNuevo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestorPantallas.show(contentPane, "creaContr");
+			}
+		});
 		mnuContratos.add(submnuContratoNuevo);
 
 		JMenuItem submnuFichasContratos = new JMenuItem("Ver fichas de contrato");
+		submnuFichasContratos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestorPantallas.show(contentPane, "fichaContr");
+			}
+		});
 		mnuContratos.add(submnuFichasContratos);
 
 		JMenuItem submnuTipoContrato = new JMenuItem("Añadir tipo de contrato");
+		submnuTipoContrato.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestorPantallas.show(contentPane, "tipoContr");
+			}
+		});
 		mnuContratos.add(submnuTipoContrato);
 
 		JMenu mnuCliente = new JMenu("Clientes");
 		menuBar.add(mnuCliente);
 
 		JMenuItem submnuAñadirCliente = new JMenuItem("Añadir cliente");
+		submnuAñadirCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestorPantallas.show(contentPane, "creaCli");
+			}
+		});
 		mnuCliente.add(submnuAñadirCliente);
 
 		JMenuItem submnuBorrarCliente = new JMenuItem("Borrar cliente");
+		submnuBorrarCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestorPantallas.show(contentPane, "borraCli");
+			}
+		});
 		mnuCliente.add(submnuBorrarCliente);
 
 		JMenu mnuIncidencias = new JMenu("Incidencias");
@@ -103,15 +175,35 @@ public class PantallaPrincipal extends JFrame {
 
 
 		JMenuItem submnuNuevaIncidencia = new JMenuItem("Nueva incidencia");
+		submnuNuevaIncidencia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestorPantallas.show(contentPane, "creaInci");
+			}
+		});
 		mnuIncidencias.add(submnuNuevaIncidencia);
 
 		JMenuItem submnuParteAsistencia = new JMenuItem("Parte de asistencia");
+		submnuParteAsistencia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestorPantallas.show(contentPane, "parteAsis");
+			}
+		});
 		mnuIncidencias.add(submnuParteAsistencia);
 
 		JMenu mnuFacturas = new JMenu("Facturas");
+		mnuFacturas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestorPantallas.show(contentPane, "facturas");
+			}
+		});
 		menuBar.add(mnuFacturas);
 
 		JMenu mnuInformes = new JMenu("Informes");
+		mnuInformes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestorPantallas.show(contentPane, "informes");
+			}
+		});
 		menuBar.add(mnuInformes);
 
 
@@ -124,68 +216,68 @@ public class PantallaPrincipal extends JFrame {
 		contentPane.setLayout(gestorPantallas);
 
 		// Panel Crear Empleados
-		JPanel creaEmple = new JPanel();
+		creaEmple = new JPanel();
 		creaEmple.setBackground(Color.BLUE);
 
 		// Panel Crear Empleados
-		JPanel fichaEmple = new JPanel();
+		fichaEmple = new JPanel();
 		fichaEmple.setBackground(Color.RED);
 
 		// Panel Borrar Empleados
-		JPanel borraEmple = new JPanel();
+		borraEmple = new JPanel();
 		borraEmple.setBackground(Color.YELLOW);
 
 		// Panel Comisiones Empleados
-		JPanel comisionEmple = new JPanel();
-		comisionEmple.setBackground(Color.BLUE);
+		comisionEmple = new JPanel();
+		comisionEmple.setBackground(Color.ORANGE);
 
 		// Panel Crear Sucursal
-		JPanel creaSucu = new JPanel();
-		creaSucu.setBackground(Color.BLUE);
+		creaSucu = new JPanel();
+		creaSucu.setBackground(Color.DARK_GRAY);
 
 		// Panel Ficha Sucursal
-		JPanel fichaSucu = new JPanel();
+		fichaSucu = new JPanel();
 		fichaSucu.setBackground(Color.CYAN);
 
 		// Panel Borrar Sucursal
-		JPanel borraSucu = new JPanel();
-		borraSucu.setBackground(Color.BLUE);
+		borraSucu = new JPanel();
+		borraSucu.setBackground(Color.LIGHT_GRAY);
 
 		// Panel Crea Contrato
-		JPanel creaContr = new JPanel();
-		creaContr.setBackground(Color.BLUE);
+		creaContr = new JPanel();
+		creaContr.setBackground(Color.MAGENTA);
 
 		// Panel Ficha Contrato
-		JPanel fichaContr = new JPanel();
-		fichaContr.setBackground(Color.BLUE);
+		fichaContr = new JPanel();
+		fichaContr.setBackground(Color.BLACK);
 
 		// Panel Tipo Contrato Añadir
-		JPanel tipoContr = new JPanel();
-		tipoContr.setBackground(Color.BLUE);
+		tipoContr = new JPanel();
+		tipoContr.setBackground(Color.GREEN);
 
 		// Panel Crear Cliente
-		JPanel creaCli = new JPanel();
-		creaCli.setBackground(Color.BLUE);
+		creaCli = new JPanel();
+		creaCli.setBackground(Color.PINK);
 
 		// Panel Borra Clientes
-		JPanel borraCli = new JPanel();
-		borraCli.setBackground(Color.BLUE);
+		borraCli = new JPanel();
+		borraCli.setBackground(Color.WHITE);
 
 		// Panel Crea Incidnecia
-		JPanel creaInci = new JPanel();
+		creaInci = new JPanel();
 		creaInci.setBackground(Color.BLUE);
 
 		// Panel Parte Asistencia
-		JPanel parteAsis = new JPanel();
+		parteAsis = new JPanel();
 		parteAsis.setBackground(Color.BLUE);
 
 		// Panel Facturas
-		JPanel facturas = new JPanel();
-		facturas.setBackground(Color.BLUE);
+		facturas = new JPanel();
+		facturas.setBackground(Color.PINK);
 
 		// Panel Informes
-		JPanel informes = new JPanel();
-		informes.setBackground(Color.BLUE);
+		informes = new JPanel();
+		informes.setBackground(Color.CYAN);
 
 		// Añadir Paneles
 		contentPane.add(creaEmple, "creaEmple");
@@ -200,6 +292,7 @@ public class PantallaPrincipal extends JFrame {
 		contentPane.add(tipoContr, "tipoContr");
 		contentPane.add(creaCli, "creaCli");
 		contentPane.add(borraCli, "borraCli");
+		contentPane.add(creaInci,"creaInci");
 		contentPane.add(parteAsis, "parteAsis");
 		contentPane.add(facturas, "facturas");
 		contentPane.add(informes, "informes");
