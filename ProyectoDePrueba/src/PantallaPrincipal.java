@@ -37,7 +37,7 @@ public class PantallaPrincipal extends JFrame {
 	public PantallaPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		setBounds(100, 100, 323, 241);
+		setBounds(100, 100, 575, 358);
 
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -107,6 +107,9 @@ public class PantallaPrincipal extends JFrame {
 		
 		JMenu mnuFacturas = new JMenu("Facturas");
 		menuBar.add(mnuFacturas);
+		
+		JMenu mnuInformes = new JMenu("Informes");
+		menuBar.add(mnuInformes);
 
 
 		contentPane = new JPanel();
