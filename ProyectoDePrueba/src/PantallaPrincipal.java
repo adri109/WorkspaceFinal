@@ -8,16 +8,22 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.CardLayout;
 import java.awt.Color;
+import javax.swing.JTextField;
+import javax.swing.JButton;
 
 public class PantallaPrincipal extends JFrame {
 
 	private JPanel contentPane;
 	private CardLayout gestorPantallas;
 	
+	// Declaración de Paneles del programa
 	private JPanel creaEmple;
 	private JPanel fichaEmple;
 	private JPanel borraEmple;
@@ -34,6 +40,14 @@ public class PantallaPrincipal extends JFrame {
 	private JPanel parteAsis;
 	private JPanel facturas;
 	private JPanel informes;
+	
+	// Declaración de objetos del panel "Crear Sucursal"
+	private JTextField txtNomSucu;
+	private JTextField txtDirSucu;
+	private JTextField txtCpSucu;
+	private JTextField txtMunicipioSucu;
+	private JTextField txtCifSucu;
+	private JTextField txtCccSucu;
 
 	/**
 	 * Launch the application.
@@ -271,10 +285,96 @@ public class PantallaPrincipal extends JFrame {
 
 		// Añadir Paneles
 		contentPane.add(creaEmple, "creaEmple");
+		creaEmple.setLayout(null);
+		
+		JLabel lblNomEmple = new JLabel("Nombre del empleado");
+		lblNomEmple.setBounds(22, 12, 199, 15);
+		creaEmple.add(lblNomEmple);
 		contentPane.add(fichaEmple, "fichaEmple");
 		contentPane.add(borraEmple, "borraEmple");
 		contentPane.add(comisionEmple, "comisionEmple");
 		contentPane.add(creaSucu, "creaSucu");
+		creaSucu.setLayout(null);
+		
+		JLabel lblCP = new JLabel("C.P.");
+		lblCP.setBounds(111, 72, 146, 20);
+		creaSucu.add(lblCP);
+		
+		txtNomSucu = new JTextField();
+		txtNomSucu.setBounds(240, 16, 114, 19);
+		creaSucu.add(txtNomSucu);
+		txtNomSucu.setColumns(10);
+		
+		JLabel lblNombreSucu = new JLabel("NOMBRE");
+		lblNombreSucu.setBounds(111, 18, 158, 15);
+		creaSucu.add(lblNombreSucu);
+		
+		JLabel lblDirSucu = new JLabel("DIRECCIÓN");
+		lblDirSucu.setBounds(111, 45, 166, 15);
+		creaSucu.add(lblDirSucu);
+		
+		JLabel lblMunicipioSucu = new JLabel("MUNICIPIO");
+		lblMunicipioSucu.setBounds(111, 104, 146, 15);
+		creaSucu.add(lblMunicipioSucu);
+		
+		JLabel lblCIF = new JLabel("CIF");
+		lblCIF.setBounds(111, 123, 70, 15);
+		creaSucu.add(lblCIF);
+		
+		JLabel lblCCC = new JLabel("C.C.C.");
+		lblCCC.setBounds(111, 144, 70, 15);
+		creaSucu.add(lblCCC);
+		
+		txtDirSucu = new JTextField();
+		txtDirSucu.setColumns(10);
+		txtDirSucu.setBounds(240, 41, 114, 19);
+		creaSucu.add(txtDirSucu);
+		
+		txtCpSucu = new JTextField();
+		txtCpSucu.setColumns(10);
+		txtCpSucu.setBounds(240, 73, 114, 19);
+		creaSucu.add(txtCpSucu);
+		
+		txtMunicipioSucu = new JTextField();
+		txtMunicipioSucu.setColumns(10);
+		txtMunicipioSucu.setBounds(240, 104, 114, 19);
+		creaSucu.add(txtMunicipioSucu);
+		
+		txtCifSucu = new JTextField();
+		txtCifSucu.setColumns(10);
+		txtCifSucu.setBounds(240, 121, 114, 19);
+		creaSucu.add(txtCifSucu);
+		
+		txtCccSucu = new JTextField();
+		txtCccSucu.setColumns(10);
+		txtCccSucu.setBounds(240, 142, 114, 19);
+		creaSucu.add(txtCccSucu);
+		
+		// Acción "Crear Sucursal"
+		JButton btnCreaSucu = new JButton("CREAR");
+		btnCreaSucu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String nombre, direccion, cp, municipio, cif, ccc;
+				nombre = txtNomSucu.getText();
+				direccion = txtDirSucu.getText();
+				cp = txtDirSucu.getText();
+				municipio = txtMunicipioSucu.getText();
+				cif = txtDirSucu.getText();
+				ccc = txtCccSucu.getText();
+				
+				Connection cnx = Conexion.conectar();
+				try {
+					java.sql.Statement sentencia = cnx.createStatement();
+					sentencia.execute("INSERT INTO sucursal VALUES(10,\"" + nombre + "\", \"" + direccion +"\"," + cp + ",\"" + municipio + "\"," + cif + "," + ccc + ");");
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					System.err.println("LA CONSULTA NO HA PODIDO SER EJECUTADA.");
+				}
+			}
+		});
+		btnCreaSucu.setBounds(191, 182, 117, 25);
+		creaSucu.add(btnCreaSucu);
 		contentPane.add(fichaSucu, "fichaSucu");
 		contentPane.add(borraSucu, "borraSucu");
 		contentPane.add(creaContr, "creaContr");
