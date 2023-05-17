@@ -9,8 +9,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.CardLayout;
@@ -40,14 +42,12 @@ public class PantallaPrincipal extends JFrame {
 	private JPanel parteAsis;
 	private JPanel facturas;
 	private JPanel informes;
-	
-	// Declaración de objetos del panel "Crear Sucursal"
-	private JTextField txtNomSucu;
-	private JTextField txtDirSucu;
-	private JTextField txtCpSucu;
-	private JTextField txtMunicipioSucu;
-	private JTextField txtCifSucu;
-	private JTextField txtCccSucu;
+	public static JTextField txtNomSucu;
+	public static JTextField txtDirSucu;
+	public static JTextField txtCpSucu;
+	public static JTextField txtMunicipioSucu;
+	public static JTextField txtCifSucu;
+	public static JTextField txtCccSucu;
 
 	/**
 	 * Launch the application.
@@ -354,23 +354,7 @@ public class PantallaPrincipal extends JFrame {
 		JButton btnCreaSucu = new JButton("CREAR");
 		btnCreaSucu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String nombre, direccion, cp, municipio, cif, ccc;
-				nombre = txtNomSucu.getText();
-				direccion = txtDirSucu.getText();
-				cp = txtDirSucu.getText();
-				municipio = txtMunicipioSucu.getText();
-				cif = txtDirSucu.getText();
-				ccc = txtCccSucu.getText();
-				
-				Connection cnx = Conexion.conectar();
-				try {
-					java.sql.Statement sentencia = cnx.createStatement();
-					sentencia.execute("INSERT INTO sucursal VALUES(10,\"" + nombre + "\", \"" + direccion +"\"," + cp + ",\"" + municipio + "\"," + cif + "," + ccc + ");");
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-					System.err.println("LA CONSULTA NO HA PODIDO SER EJECUTADA.");
-				}
+				Inserts.insertSucursal();
 			}
 		});
 		btnCreaSucu.setBounds(191, 182, 117, 25);
