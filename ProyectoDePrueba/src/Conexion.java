@@ -6,7 +6,7 @@ import com.mysql.*;
 
 public class Conexion {
 
-	private static final String CONTROLADOR = "com.mysql.jdbc.Driver";
+	private static final String CONTROLADOR = "com.mysql.cj.jdbc.Driver";
 	private static final String URL = "jdbc:mysql://192.168.4.233:3306/";
 	private static final String DB = "pruebas";
 	private static final String USUARIO = "pelli";
@@ -15,6 +15,7 @@ public class Conexion {
 
 	public static Connection conectar() {
 		Connection conexion = null;
+		Statement consulta = null;
 		
 		try {
 			Class.forName(CONTROLADOR);
@@ -33,5 +34,11 @@ public class Conexion {
 		}
 		
 		return conexion;
+	}
+
+
+	public java.sql.Statement createStatement() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
