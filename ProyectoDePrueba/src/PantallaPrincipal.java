@@ -43,15 +43,15 @@ public class PantallaPrincipal extends JFrame {
 
 	private JPanel contentPane;
 	private CardLayout gestorPantallas;
-	
+
 	// Declaración de Paneles del programa
 	private JPanel creaEmple;
 	private JPanel fichaEmple;
 	private JPanel borraEmple;
 	private JPanel comisionEmple;
 	private JPanel creaSucu;
-	private JPanel borraSucu;
 	private JPanel fichaSucu;
+	private JPanel borraSucu;
 	private JPanel creaContr;
 	private JPanel fichaContr;
 	private JPanel tipoContr;
@@ -94,82 +94,34 @@ public class PantallaPrincipal extends JFrame {
 
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		
-				JMenu mnuSucursal = new JMenu("Sucursal");
-				menuBar.add(mnuSucursal);
-				
-						JMenuItem submnuCrearSucursal = new JMenuItem("Crear sucursal");
-						submnuCrearSucursal.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								gestorPantallas.show(contentPane, "creaSucu");
-							}
-						});
-						mnuSucursal.add(submnuCrearSucursal);
-						
-								JMenuItem submnuFichasSucursal = new JMenuItem("Ver fichas de sucursal");
-								submnuFichasSucursal.addActionListener(new ActionListener() {
-									public void actionPerformed(ActionEvent e) {
-										gestorPantallas.show(contentPane, "fichaSucu");
-										fichaSucu.removeAll();
-										Connection cnx = Conexion.conectar();
-										
-										String[] columnNames = {"ID_SUCURSAL","NOMBRE SUCURSAL", "DIRECCIÓN", "CP", "MUNICIPIO", "CIF", "CCC"};
-										DefaultTableModel model = new DefaultTableModel(columnNames, 0) {
-											@Override
-											public Class<?> getColumnClass(int columnIndex) {
-												return String.class;
-											}
-											
-											@Override
-											public boolean isCellEditable(int row, int column) {
-												return column == 1 || column == 2 || column == 3 || column == 4 || column == 5 || column == 6 || column == 7;
-											}
-										};
-										
-										JTable table = new JTable(model);
-										table.setBackground(Color.white);
-										
-										JScrollPane scrollPane = new JScrollPane(table);
-										scrollPane.setPreferredSize(new Dimension(1000, 400));
-										
-										fichaSucu.add(scrollPane);
-										
-										String sql = "SELECT * FROM sucursal";
-										
 
-										try {
-											java.sql.Statement sentencia = cnx.createStatement();
-											ResultSet resultado = ((java.sql.Statement) sentencia).executeQuery(sql);
-											while (resultado.next()) {
-												String[] ln = new String[8];
-												ln[0] = resultado.getString(1);
-												ln[1] = resultado.getString(2);
-												ln[2] = resultado.getString(3);
-												ln[3] = resultado.getString(4);
-												ln[4] = resultado.getString(5);
-												ln[5] = resultado.getString(6);
-												ln[6] = resultado.getString(7);
-												model.addRow(ln);
-											}
-										} catch (SQLException sqlE1) {
-											// TODO Auto-generated catch block
-											sqlE1.printStackTrace();
-										}
-										
-										table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-										fichaSucu.revalidate();
-										fichaSucu.repaint();
-									}
-								});
-								mnuSucursal.add(submnuFichasSucursal);
-								
-										JMenuItem submnuBorrarSucursal = new JMenuItem("Borrar Sucursal");
-										submnuBorrarSucursal.addActionListener(new ActionListener() {
-											public void actionPerformed(ActionEvent e) {
-												gestorPantallas.show(contentPane, "borraSucu");
-											}
-										});
-										mnuSucursal.add(submnuBorrarSucursal);
+		JMenu mnuSucursal = new JMenu("Sucursal");
+		menuBar.add(mnuSucursal);
+
+		JMenuItem submnuCrearSucursal = new JMenuItem("Crear sucursal");
+		submnuCrearSucursal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestorPantallas.show(contentPane, "creaSucu");
+			}
+		});
+		mnuSucursal.add(submnuCrearSucursal);
+
+		JMenuItem submnuFichasSucursal = new JMenuItem("Ver fichas de sucursal");
+		submnuFichasSucursal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestorPantallas.show(contentPane, "fichaSucu");
+				Listar.Sucursales(fichaSucu);
+			}
+		});
+		mnuSucursal.add(submnuFichasSucursal);
+
+		JMenuItem submnuBorrarSucursal = new JMenuItem("Borrar Sucursal");
+		submnuBorrarSucursal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestorPantallas.show(contentPane, "borraSucu");
+			}
+		});
+		mnuSucursal.add(submnuBorrarSucursal);
 
 		JMenu mnuEmpleados = new JMenu("Empleados");
 		menuBar.add(mnuEmpleados);
@@ -186,7 +138,7 @@ public class PantallaPrincipal extends JFrame {
 		submnuFichaEmpleados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gestorPantallas.show(contentPane, "fichaEmple");
-				
+
 			}
 		});
 		mnuEmpleados.add(submnuFichaEmpleados);
@@ -206,25 +158,25 @@ public class PantallaPrincipal extends JFrame {
 			}
 		});
 		mnuEmpleados.add(submnuComisiones);
-		
-				JMenu mnuCliente = new JMenu("Clientes");
-				menuBar.add(mnuCliente);
-				
-						JMenuItem submnuAñadirCliente = new JMenuItem("Añadir cliente");
-						submnuAñadirCliente.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent e) {
-								gestorPantallas.show(contentPane, "creaCli");
-							}
-						});
-						mnuCliente.add(submnuAñadirCliente);
-						
-								JMenuItem submnuBorrarCliente = new JMenuItem("Borrar cliente");
-								submnuBorrarCliente.addActionListener(new ActionListener() {
-									public void actionPerformed(ActionEvent e) {
-										gestorPantallas.show(contentPane, "borraCli");
-									}
-								});
-								mnuCliente.add(submnuBorrarCliente);
+
+		JMenu mnuCliente = new JMenu("Clientes");
+		menuBar.add(mnuCliente);
+
+		JMenuItem submnuAñadirCliente = new JMenuItem("Añadir cliente");
+		submnuAñadirCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestorPantallas.show(contentPane, "creaCli");
+			}
+		});
+		mnuCliente.add(submnuAñadirCliente);
+
+		JMenuItem submnuBorrarCliente = new JMenuItem("Borrar cliente");
+		submnuBorrarCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestorPantallas.show(contentPane, "borraCli");
+			}
+		});
+		mnuCliente.add(submnuBorrarCliente);
 
 		JMenu mnuContratos = new JMenu("Contratos");
 		menuBar.add(mnuContratos);
@@ -275,7 +227,7 @@ public class PantallaPrincipal extends JFrame {
 
 		JMenu mnuFacturas = new JMenu("Facturas");
 		menuBar.add(mnuFacturas);
-		
+
 		JMenuItem submnuPFacturas = new JMenuItem("Panel Facturas");
 		submnuPFacturas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -286,7 +238,7 @@ public class PantallaPrincipal extends JFrame {
 
 		JMenu mnuInformes = new JMenu("Informes");
 		menuBar.add(mnuInformes);
-		
+
 		JMenuItem submnuPInformes = new JMenuItem("Panel Informes");
 		submnuPInformes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -303,7 +255,7 @@ public class PantallaPrincipal extends JFrame {
 
 		gestorPantallas = new CardLayout();
 		contentPane.setLayout(gestorPantallas);
-
+		
 		// Panel Crear Empleados
 		creaEmple = new JPanel();
 
@@ -321,9 +273,6 @@ public class PantallaPrincipal extends JFrame {
 
 		// Panel Ficha Sucursal
 		fichaSucu = new JPanel();
-
-		// Panel Borrar Sucursal
-		borraSucu = new JPanel();
 
 		// Panel Crea Contrato
 		creaContr = new JPanel();
@@ -360,7 +309,7 @@ public class PantallaPrincipal extends JFrame {
 		contentPane.add(comisionEmple, "comisionEmple");
 		contentPane.add(creaSucu, "creaSucu");
 		creaSucu.setLayout(null);
-		
+
 		Panel panel = new Panel();
 		panel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		panel.setBackground(new Color(87, 227, 137));
@@ -373,14 +322,14 @@ public class PantallaPrincipal extends JFrame {
 		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
-		
+
 		JLabel lblNombreSucu = new JLabel("NOMBRE");
 		GridBagConstraints gbc_lblNombreSucu = new GridBagConstraints();
 		gbc_lblNombreSucu.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNombreSucu.gridx = 0;
 		gbc_lblNombreSucu.gridy = 2;
 		panel.add(lblNombreSucu, gbc_lblNombreSucu);
-		
+
 		txtNomSucu = new JTextField();
 		GridBagConstraints gbc_txtNomSucu = new GridBagConstraints();
 		gbc_txtNomSucu.anchor = GridBagConstraints.NORTHWEST;
@@ -389,14 +338,14 @@ public class PantallaPrincipal extends JFrame {
 		gbc_txtNomSucu.gridy = 2;
 		panel.add(txtNomSucu, gbc_txtNomSucu);
 		txtNomSucu.setColumns(10);
-		
+
 		JLabel lblDirSucu = new JLabel("DIRECCIÓN");
 		GridBagConstraints gbc_lblDirSucu = new GridBagConstraints();
 		gbc_lblDirSucu.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDirSucu.gridx = 3;
 		gbc_lblDirSucu.gridy = 2;
 		panel.add(lblDirSucu, gbc_lblDirSucu);
-		
+
 		txtDirSucu = new JTextField();
 		GridBagConstraints gbc_txtDirSucu = new GridBagConstraints();
 		gbc_txtDirSucu.anchor = GridBagConstraints.NORTH;
@@ -406,14 +355,14 @@ public class PantallaPrincipal extends JFrame {
 		gbc_txtDirSucu.gridy = 2;
 		panel.add(txtDirSucu, gbc_txtDirSucu);
 		txtDirSucu.setColumns(10);
-		
+
 		JLabel lblCP = new JLabel("C.P.");
 		GridBagConstraints gbc_lblCP = new GridBagConstraints();
 		gbc_lblCP.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCP.gridx = 0;
 		gbc_lblCP.gridy = 3;
 		panel.add(lblCP, gbc_lblCP);
-		
+
 		txtCpSucu = new JTextField();
 		GridBagConstraints gbc_txtCpSucu = new GridBagConstraints();
 		gbc_txtCpSucu.anchor = GridBagConstraints.NORTH;
@@ -423,14 +372,14 @@ public class PantallaPrincipal extends JFrame {
 		gbc_txtCpSucu.gridy = 3;
 		panel.add(txtCpSucu, gbc_txtCpSucu);
 		txtCpSucu.setColumns(10);
-		
+
 		JLabel lblMunicipioSucu = new JLabel("MUNICIPIO");
 		GridBagConstraints gbc_lblMunicipioSucu = new GridBagConstraints();
 		gbc_lblMunicipioSucu.insets = new Insets(0, 0, 5, 5);
 		gbc_lblMunicipioSucu.gridx = 3;
 		gbc_lblMunicipioSucu.gridy = 3;
 		panel.add(lblMunicipioSucu, gbc_lblMunicipioSucu);
-		
+
 		txtMunicipioSucu = new JTextField();
 		GridBagConstraints gbc_txtMunicipioSucu = new GridBagConstraints();
 		gbc_txtMunicipioSucu.anchor = GridBagConstraints.NORTH;
@@ -440,14 +389,14 @@ public class PantallaPrincipal extends JFrame {
 		gbc_txtMunicipioSucu.gridy = 3;
 		panel.add(txtMunicipioSucu, gbc_txtMunicipioSucu);
 		txtMunicipioSucu.setColumns(10);
-		
+
 		JLabel lblCIF = new JLabel("CIF");
 		GridBagConstraints gbc_lblCIF = new GridBagConstraints();
 		gbc_lblCIF.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCIF.gridx = 0;
 		gbc_lblCIF.gridy = 4;
 		panel.add(lblCIF, gbc_lblCIF);
-		
+
 		txtCifSucu = new JTextField();
 		GridBagConstraints gbc_txtCifSucu = new GridBagConstraints();
 		gbc_txtCifSucu.anchor = GridBagConstraints.NORTH;
@@ -457,14 +406,14 @@ public class PantallaPrincipal extends JFrame {
 		gbc_txtCifSucu.gridy = 4;
 		panel.add(txtCifSucu, gbc_txtCifSucu);
 		txtCifSucu.setColumns(10);
-		
+
 		JLabel lblCCC = new JLabel("C.C.C.");
 		GridBagConstraints gbc_lblCCC = new GridBagConstraints();
 		gbc_lblCCC.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCCC.gridx = 3;
 		gbc_lblCCC.gridy = 4;
 		panel.add(lblCCC, gbc_lblCCC);
-		
+
 		txtCccSucu = new JTextField();
 		GridBagConstraints gbc_txtCccSucu = new GridBagConstraints();
 		gbc_txtCccSucu.anchor = GridBagConstraints.NORTH;
@@ -474,7 +423,7 @@ public class PantallaPrincipal extends JFrame {
 		gbc_txtCccSucu.gridy = 4;
 		panel.add(txtCccSucu, gbc_txtCccSucu);
 		txtCccSucu.setColumns(10);
-		
+
 		// Acción "Crear Sucursal"
 		JButton btnCreaSucu = new JButton("CREAR");
 		btnCreaSucu.setBounds(427, 318, 124, 25);
@@ -484,8 +433,20 @@ public class PantallaPrincipal extends JFrame {
 				Inserts.insertSucursal();
 			}
 		});
+		
 		contentPane.add(fichaSucu, "fichaSucu");
-		contentPane.add(borraSucu, "borraSucu");
+		
+				// Panel Borrar Sucursal
+				borraSucu = new JPanel();
+				contentPane.add(borraSucu, "borraSucu");
+				
+				JButton btnNewButton = new JButton("New button");
+				btnNewButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Listar.Sucursales(borraSucu);
+					}
+				});
+				borraSucu.add(btnNewButton);
 		contentPane.add(creaContr, "creaContr");
 		contentPane.add(fichaContr, "fichaContr");
 		contentPane.add(tipoContr, "tipoContr");
@@ -495,7 +456,7 @@ public class PantallaPrincipal extends JFrame {
 		contentPane.add(parteAsis, "parteAsis");
 		contentPane.add(facturas, "facturas");
 		contentPane.add(informes, "informes");
-
+		
 		gestorPantallas.show(contentPane, "fichaEmple");
 	}
 }
