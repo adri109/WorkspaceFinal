@@ -444,7 +444,7 @@ public class PantallaPrincipal extends JFrame {
 				JButton btnBuscaSucu = new JButton("Buscar");
 				btnBuscaSucu.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Buscar.sucursal(borraSucu, txtBuscaSucu);
+						Buscar.sucursal(borraSucu, txtBuscaSucu, btnBuscaSucu);
 					}
 				});
 				
@@ -452,6 +452,8 @@ public class PantallaPrincipal extends JFrame {
 				borraSucu.add(txtBuscaSucu);
 				txtBuscaSucu.setColumns(10);
 				borraSucu.add(btnBuscaSucu);
+				
+				
 				
 		contentPane.add(creaContr, "creaContr");
 		contentPane.add(fichaContr, "fichaContr");
