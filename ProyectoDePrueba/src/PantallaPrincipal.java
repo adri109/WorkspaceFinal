@@ -38,6 +38,9 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import javax.swing.JToggleButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 
 public class PantallaPrincipal extends JFrame {
 
@@ -68,6 +71,10 @@ public class PantallaPrincipal extends JFrame {
 	public static JTextField txtCifSucu;
 	public static JTextField txtCccSucu;
 	private JTextField txtBuscaSucu;
+	private JTextField txtNomEmple;
+	private JTextField txtDniEmple;
+	private JTextField txtFechAlta;
+	private JTextField txtNivelAsist;
 
 	/**
 	 * Launch the application.
@@ -305,6 +312,140 @@ public class PantallaPrincipal extends JFrame {
 		// Añadir Paneles
 		contentPane.add(creaEmple, "creaEmple");
 		creaEmple.setLayout(null);
+		
+		Panel panel_1 = new Panel();
+		panel_1.setForeground(new Color(87, 227, 137));
+		panel_1.setBackground(new Color(87, 227, 137));
+		panel_1.setBounds(263, 190, 577, 193);
+		creaEmple.add(panel_1);
+		GridBagLayout gbl_panel_1 = new GridBagLayout();
+		gbl_panel_1.columnWidths = new int[]{115, 111, 0, 107, 121, 0};
+		gbl_panel_1.rowHeights = new int[]{19, 0, 19, 19, 25, 25, 0, 0};
+		gbl_panel_1.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panel_1.setLayout(gbl_panel_1);
+		
+		JLabel lblNombreEmple = new JLabel("NOMBRE");
+		GridBagConstraints gbc_lblNombreEmple = new GridBagConstraints();
+		gbc_lblNombreEmple.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNombreEmple.gridx = 0;
+		gbc_lblNombreEmple.gridy = 2;
+		panel_1.add(lblNombreEmple, gbc_lblNombreEmple);
+		
+		txtNomEmple = new JTextField();
+		txtNomEmple.setColumns(10);
+		GridBagConstraints gbc_txtNomEmple = new GridBagConstraints();
+		gbc_txtNomEmple.anchor = GridBagConstraints.NORTHWEST;
+		gbc_txtNomEmple.insets = new Insets(0, 0, 5, 5);
+		gbc_txtNomEmple.gridx = 1;
+		gbc_txtNomEmple.gridy = 2;
+		panel_1.add(txtNomEmple, gbc_txtNomEmple);
+		
+		JLabel lblDniEmple = new JLabel("DNI");
+		GridBagConstraints gbc_lblDniEmple = new GridBagConstraints();
+		gbc_lblDniEmple.insets = new Insets(0, 0, 5, 5);
+		gbc_lblDniEmple.gridx = 3;
+		gbc_lblDniEmple.gridy = 2;
+		panel_1.add(lblDniEmple, gbc_lblDniEmple);
+		
+		txtDniEmple = new JTextField();
+		txtDniEmple.setColumns(10);
+		GridBagConstraints gbc_txtDniEmple = new GridBagConstraints();
+		gbc_txtDniEmple.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtDniEmple.anchor = GridBagConstraints.NORTH;
+		gbc_txtDniEmple.insets = new Insets(0, 0, 5, 0);
+		gbc_txtDniEmple.gridx = 4;
+		gbc_txtDniEmple.gridy = 2;
+		panel_1.add(txtDniEmple, gbc_txtDniEmple);
+		
+		JLabel lblFechAlta = new JLabel("FECHA ALTA");
+		GridBagConstraints gbc_lblFechAlta = new GridBagConstraints();
+		gbc_lblFechAlta.insets = new Insets(0, 0, 5, 5);
+		gbc_lblFechAlta.gridx = 0;
+		gbc_lblFechAlta.gridy = 3;
+		panel_1.add(lblFechAlta, gbc_lblFechAlta);
+		
+		txtFechAlta = new JTextField();
+		txtFechAlta.setColumns(10);
+		GridBagConstraints gbc_txtFechAlta = new GridBagConstraints();
+		gbc_txtFechAlta.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtFechAlta.anchor = GridBagConstraints.NORTH;
+		gbc_txtFechAlta.insets = new Insets(0, 0, 5, 5);
+		gbc_txtFechAlta.gridx = 1;
+		gbc_txtFechAlta.gridy = 3;
+		panel_1.add(txtFechAlta, gbc_txtFechAlta);
+		
+		JLabel lblActivo = new JLabel("ACTIVO");
+		GridBagConstraints gbc_lblActivo = new GridBagConstraints();
+		gbc_lblActivo.insets = new Insets(0, 0, 5, 5);
+		gbc_lblActivo.gridx = 3;
+		gbc_lblActivo.gridy = 3;
+		panel_1.add(lblActivo, gbc_lblActivo);
+		
+		JCheckBox chkbxEmpleActivo = new JCheckBox("");
+		GridBagConstraints gbc_chkbxEmpleActivo = new GridBagConstraints();
+		gbc_chkbxEmpleActivo.insets = new Insets(0, 0, 5, 0);
+		gbc_chkbxEmpleActivo.gridx = 4;
+		gbc_chkbxEmpleActivo.gridy = 3;
+		panel_1.add(chkbxEmpleActivo, gbc_chkbxEmpleActivo);
+		
+		JLabel lblNivelAsist = new JLabel("NIVEL ASISTENCIA");
+		GridBagConstraints gbc_lblNivelAsist = new GridBagConstraints();
+		gbc_lblNivelAsist.anchor = GridBagConstraints.EAST;
+		gbc_lblNivelAsist.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNivelAsist.gridx = 0;
+		gbc_lblNivelAsist.gridy = 4;
+		panel_1.add(lblNivelAsist, gbc_lblNivelAsist);
+		
+		txtNivelAsist = new JTextField();
+		GridBagConstraints gbc_txtNivelAsist = new GridBagConstraints();
+		gbc_txtNivelAsist.insets = new Insets(0, 0, 5, 5);
+		gbc_txtNivelAsist.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtNivelAsist.gridx = 1;
+		gbc_txtNivelAsist.gridy = 4;
+		panel_1.add(txtNivelAsist, gbc_txtNivelAsist);
+		txtNivelAsist.setColumns(10);
+		
+		JLabel lblNivelComision = new JLabel("NIVEL COMISIÓN");
+		GridBagConstraints gbc_lblNivelComision = new GridBagConstraints();
+		gbc_lblNivelComision.anchor = GridBagConstraints.EAST;
+		gbc_lblNivelComision.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNivelComision.gridx = 3;
+		gbc_lblNivelComision.gridy = 4;
+		panel_1.add(lblNivelComision, gbc_lblNivelComision);
+		
+		JComboBox cmbxNivelComision = new JComboBox();
+		GridBagConstraints gbc_cmbxNivelComision = new GridBagConstraints();
+		gbc_cmbxNivelComision.insets = new Insets(0, 0, 5, 0);
+		gbc_cmbxNivelComision.fill = GridBagConstraints.HORIZONTAL;
+		gbc_cmbxNivelComision.gridx = 4;
+		gbc_cmbxNivelComision.gridy = 4;
+		panel_1.add(cmbxNivelComision, gbc_cmbxNivelComision);
+		
+		JLabel lblCodSucuEmple = new JLabel("SUCURSAL");
+		GridBagConstraints gbc_lblCodSucuEmple = new GridBagConstraints();
+		gbc_lblCodSucuEmple.anchor = GridBagConstraints.EAST;
+		gbc_lblCodSucuEmple.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCodSucuEmple.gridx = 0;
+		gbc_lblCodSucuEmple.gridy = 5;
+		panel_1.add(lblCodSucuEmple, gbc_lblCodSucuEmple);
+		
+		JComboBox cmbxCodSucu = new JComboBox();
+		GridBagConstraints gbc_cmbxCodSucu = new GridBagConstraints();
+		gbc_cmbxCodSucu.insets = new Insets(0, 0, 5, 5);
+		gbc_cmbxCodSucu.fill = GridBagConstraints.HORIZONTAL;
+		gbc_cmbxCodSucu.gridx = 1;
+		gbc_cmbxCodSucu.gridy = 5;
+		panel_1.add(cmbxCodSucu, gbc_cmbxCodSucu);
+		JComboBox<String> comboBox = new JComboBox<>();
+		String[] opciones = {"Opción 1", "Opción 2", "Opción 3"};
+		for (int i = 0; i < opciones.length; i++) {
+			cmbxCodSucu.addItem(opciones[i]);
+		}
+		
+		JButton btnCreaEmple = new JButton("CREAR");
+		btnCreaEmple.setBounds(541, 408, 117, 25);
+		creaEmple.add(btnCreaEmple);
 		contentPane.add(fichaEmple, "fichaEmple");
 		contentPane.add(borraEmple, "borraEmple");
 		contentPane.add(comisionEmple, "comisionEmple");
