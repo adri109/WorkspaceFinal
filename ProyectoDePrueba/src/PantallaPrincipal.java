@@ -67,6 +67,7 @@ public class PantallaPrincipal extends JFrame {
 	public static JTextField txtMunicipioSucu;
 	public static JTextField txtCifSucu;
 	public static JTextField txtCccSucu;
+	private JTextField txtBuscaSucu;
 
 	/**
 	 * Launch the application.
@@ -440,13 +441,18 @@ public class PantallaPrincipal extends JFrame {
 				borraSucu = new JPanel();
 				contentPane.add(borraSucu, "borraSucu");
 				
-				JButton btnNewButton = new JButton("New button");
-				btnNewButton.addActionListener(new ActionListener() {
+				JButton btnBuscaSucu = new JButton("Buscar");
+				btnBuscaSucu.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Listar.Sucursales(borraSucu);
+						Buscar.sucursal(borraSucu, txtBuscaSucu);
 					}
 				});
-				borraSucu.add(btnNewButton);
+				
+				txtBuscaSucu = new JTextField();
+				borraSucu.add(txtBuscaSucu);
+				txtBuscaSucu.setColumns(10);
+				borraSucu.add(btnBuscaSucu);
+				
 		contentPane.add(creaContr, "creaContr");
 		contentPane.add(fichaContr, "fichaContr");
 		contentPane.add(tipoContr, "tipoContr");
