@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.DefaultCellEditor;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
@@ -23,12 +25,11 @@ import javax.swing.table.TableCellRenderer;
 
 public class Buscar {
 
-	private String rutaIcono = "";
 	public static void sucursal(JPanel borraSucu, JTextField nom, JButton btn) {
 
 		class ButtonRenderer extends JButton implements TableCellRenderer {
 		    public ButtonRenderer() {
-		        setOpaque(true);
+		        setOpaque(false);
 		    }
 
 		    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -39,11 +40,11 @@ public class Buscar {
 		            setForeground(table.getForeground());
 		            setBackground(UIManager.getColor("Button.background"));
 		        }
-		        setText("borrar");
 		        return this;
 		    }
 		}
 
+		
 		class ButtonEditor extends DefaultCellEditor {
 		    protected JButton button;
 		    private String label;
@@ -52,7 +53,6 @@ public class Buscar {
 		    public ButtonEditor(JCheckBox checkBox) {
 		        super(checkBox);
 		        button = new JButton();
-		        button.setOpaque(true);
 		        button.addActionListener((ActionListener) new ActionListener() {
 		            public void actionPerformed(ActionEvent e) {
 		                fireEditingStopped();
@@ -61,15 +61,8 @@ public class Buscar {
 		    }
 
 		    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-		        if (isSelected) {
-		            button.setForeground(table.getSelectionForeground());
-		            button.setBackground(table.getSelectionBackground());
-		        } else {
-		            button.setForeground(table.getForeground());
-		            button.setBackground(table.getBackground());
-		        }
-		        label = (value == null) ? "" : value.toString();
-		        button.setText(label);
+		        Icon icono = new ImageIcon("/home/daw/Escritorio/proyecto_prog/eclipse-workspace/WorkspaceFinal/ProyectoDePrueba/src/papelera.png");
+		        button.setIcon(icono);
 		        isPushed = true;
 		        return button;
 		    }
@@ -137,13 +130,26 @@ public class Buscar {
 		            ln[6] = resultado.getString(7);
 
 		            JButton btnEliminar = new JButton("Eliminar");
+		            
 		            btnEliminar.addActionListener(new ActionListener() {
 		                public void actionPerformed(ActionEvent e) {
 		                    // Aquí colocas la lógica para eliminar el registro
 		                    // Puedes utilizar el ID de la fila o cualquier otro dato necesario
+//		                	String borrarSQL = "DELETE FROM sucursal where cod_sucursal = 1;";
+//		                	java.sql.Statement sentencia;
+//							try {
+//								sentencia = cnx.createStatement();
+//			    		        sentencia.execute(borrarSQL);
+//							} catch (SQLException e1) {
+//								// TODO Auto-generated catch block
+//								e1.printStackTrace();
+//							}
+
 		                }
 		            });
 
+
+		            
 		            Object[] row = new Object[9];
 		            for (int i = 0; i < ln.length; i++) {
 		                row[i] = ln[i];
