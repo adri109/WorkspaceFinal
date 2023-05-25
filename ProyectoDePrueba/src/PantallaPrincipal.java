@@ -18,6 +18,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.CardLayout;
@@ -46,6 +48,8 @@ public class PantallaPrincipal extends JFrame {
 
 	private JPanel contentPane;
 	private CardLayout gestorPantallas;
+	
+	static Connection cnx = Conexion.conectar();
 
 	// Declaración de Paneles del programa
 	private JPanel creaEmple;
@@ -71,10 +75,17 @@ public class PantallaPrincipal extends JFrame {
 	public static JTextField txtCifSucu;
 	public static JTextField txtCccSucu;
 	private JTextField txtBuscaSucu;
-	private JTextField txtNomEmple;
-	private JTextField txtDniEmple;
-	private JTextField txtFechAlta;
-	private JTextField txtNivelAsist;
+	
+	
+	
+	//Atributos empleado
+	public static JTextField txtNomEmple;
+	public static JTextField txtDniEmple;
+	public static JTextField txtFechAlta;
+	public static JTextField txtNivelAsist;
+	public static JCheckBox chkbxEmpleActivo;
+	public static JComboBox<String> cmbxCodSucu;
+	public static JComboBox<String> cmbxNivelComision;
 
 	/**
 	 * Launch the application.
@@ -138,6 +149,8 @@ public class PantallaPrincipal extends JFrame {
 		submnuCrearEmpleado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gestorPantallas.show(contentPane, "creaEmple");
+				comboboxsucu();
+				comboboxcomi();
 			}
 		});
 		mnuEmpleados.add(submnuCrearEmpleado);
@@ -313,33 +326,34 @@ public class PantallaPrincipal extends JFrame {
 		contentPane.add(creaEmple, "creaEmple");
 		creaEmple.setLayout(null);
 		
+		//EMPLEADO
+		
 		Panel panel_1 = new Panel();
 		panel_1.setForeground(new Color(87, 227, 137));
 		panel_1.setBackground(new Color(87, 227, 137));
-		panel_1.setBounds(263, 190, 577, 193);
+		panel_1.setBounds(183, 148, 628, 154);
 		creaEmple.add(panel_1);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{115, 111, 0, 107, 121, 0};
 		gbl_panel_1.rowHeights = new int[]{19, 0, 19, 19, 25, 25, 0, 0};
-		gbl_panel_1.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
 		JLabel lblNombreEmple = new JLabel("NOMBRE");
 		GridBagConstraints gbc_lblNombreEmple = new GridBagConstraints();
+		gbc_lblNombreEmple.anchor = GridBagConstraints.EAST;
 		gbc_lblNombreEmple.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNombreEmple.gridx = 0;
 		gbc_lblNombreEmple.gridy = 2;
 		panel_1.add(lblNombreEmple, gbc_lblNombreEmple);
 		
 		txtNomEmple = new JTextField();
-		txtNomEmple.setColumns(10);
 		GridBagConstraints gbc_txtNomEmple = new GridBagConstraints();
-		gbc_txtNomEmple.anchor = GridBagConstraints.NORTHWEST;
 		gbc_txtNomEmple.insets = new Insets(0, 0, 5, 5);
+		gbc_txtNomEmple.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtNomEmple.gridx = 1;
 		gbc_txtNomEmple.gridy = 2;
 		panel_1.add(txtNomEmple, gbc_txtNomEmple);
+		txtNomEmple.setColumns(10);
 		
 		JLabel lblDniEmple = new JLabel("DNI");
 		GridBagConstraints gbc_lblDniEmple = new GridBagConstraints();
@@ -365,6 +379,9 @@ public class PantallaPrincipal extends JFrame {
 		gbc_lblFechAlta.gridy = 3;
 		panel_1.add(lblFechAlta, gbc_lblFechAlta);
 		
+		
+		
+		
 		txtFechAlta = new JTextField();
 		txtFechAlta.setColumns(10);
 		GridBagConstraints gbc_txtFechAlta = new GridBagConstraints();
@@ -374,6 +391,11 @@ public class PantallaPrincipal extends JFrame {
 		gbc_txtFechAlta.gridx = 1;
 		gbc_txtFechAlta.gridy = 3;
 		panel_1.add(txtFechAlta, gbc_txtFechAlta);
+//		String regex = "^(0[1-9]|1\\d|2\\d|3[01])/(0[1-9]|1[0-2])/\\d{4}$";
+//		Pattern pattern = Pattern.compile(regex);
+//        Matcher matcher = pattern.matcher(txtFechAlta.getText());
+		
+		
 		
 		JLabel lblActivo = new JLabel("ACTIVO");
 		GridBagConstraints gbc_lblActivo = new GridBagConstraints();
@@ -382,7 +404,7 @@ public class PantallaPrincipal extends JFrame {
 		gbc_lblActivo.gridy = 3;
 		panel_1.add(lblActivo, gbc_lblActivo);
 		
-		JCheckBox chkbxEmpleActivo = new JCheckBox("");
+		chkbxEmpleActivo = new JCheckBox("");
 		GridBagConstraints gbc_chkbxEmpleActivo = new GridBagConstraints();
 		gbc_chkbxEmpleActivo.insets = new Insets(0, 0, 5, 0);
 		gbc_chkbxEmpleActivo.gridx = 4;
@@ -414,13 +436,15 @@ public class PantallaPrincipal extends JFrame {
 		gbc_lblNivelComision.gridy = 4;
 		panel_1.add(lblNivelComision, gbc_lblNivelComision);
 		
-		JComboBox cmbxNivelComision = new JComboBox();
+		cmbxNivelComision = new JComboBox<String>();
 		GridBagConstraints gbc_cmbxNivelComision = new GridBagConstraints();
 		gbc_cmbxNivelComision.insets = new Insets(0, 0, 5, 0);
 		gbc_cmbxNivelComision.fill = GridBagConstraints.HORIZONTAL;
 		gbc_cmbxNivelComision.gridx = 4;
 		gbc_cmbxNivelComision.gridy = 4;
 		panel_1.add(cmbxNivelComision, gbc_cmbxNivelComision);
+		
+		
 		
 		JLabel lblCodSucuEmple = new JLabel("SUCURSAL");
 		GridBagConstraints gbc_lblCodSucuEmple = new GridBagConstraints();
@@ -430,21 +454,23 @@ public class PantallaPrincipal extends JFrame {
 		gbc_lblCodSucuEmple.gridy = 5;
 		panel_1.add(lblCodSucuEmple, gbc_lblCodSucuEmple);
 		
-		JComboBox cmbxCodSucu = new JComboBox();
+		cmbxCodSucu = new JComboBox<String>();
 		GridBagConstraints gbc_cmbxCodSucu = new GridBagConstraints();
 		gbc_cmbxCodSucu.insets = new Insets(0, 0, 5, 5);
 		gbc_cmbxCodSucu.fill = GridBagConstraints.HORIZONTAL;
 		gbc_cmbxCodSucu.gridx = 1;
 		gbc_cmbxCodSucu.gridy = 5;
 		panel_1.add(cmbxCodSucu, gbc_cmbxCodSucu);
-		JComboBox<String> comboBox = new JComboBox<>();
-		String[] opciones = {"Opción 1", "Opción 2", "Opción 3"};
-		for (int i = 0; i < opciones.length; i++) {
-			cmbxCodSucu.addItem(opciones[i]);
-		}
+		
+		
 		
 		JButton btnCreaEmple = new JButton("CREAR");
-		btnCreaEmple.setBounds(541, 408, 117, 25);
+		btnCreaEmple.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Inserts.insertEmpleado();
+			}
+		});
+		btnCreaEmple.setBounds(490, 327, 117, 25);
 		creaEmple.add(btnCreaEmple);
 		contentPane.add(fichaEmple, "fichaEmple");
 		contentPane.add(borraEmple, "borraEmple");
@@ -456,7 +482,7 @@ public class PantallaPrincipal extends JFrame {
 		panel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		panel.setBackground(new Color(87, 227, 137));
 		panel.setForeground(new Color(87, 227, 137));
-		panel.setBounds(241, 167, 475, 129);
+		panel.setBounds(241, 157, 492, 129);
 		creaSucu.add(panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{115, 111, 0, 107, 121, 0};
@@ -607,5 +633,38 @@ public class PantallaPrincipal extends JFrame {
 		contentPane.add(informes, "informes");
 		
 		gestorPantallas.show(contentPane, "fichaEmple");
+	}
+	public static void comboboxsucu() {
+String sql = "SELECT nombre FROM sucursal";
+		
+		try {
+			java.sql.Statement sentencia =cnx.createStatement();
+			ResultSet resultado = sentencia.executeQuery(sql);
+			while (resultado.next()) {
+				String[] ln = new String[8];
+				ln[0] = resultado.getString(1);
+				cmbxCodSucu.addItem(ln[0]);
+			}
+		}
+		catch(Exception e) {
+			
+		}
+	}
+	public static void comboboxcomi() {
+		//HACER CONSULTA PARA OBTENER LOS NIVELES DE COMISION
+		String sqlNivelComi = "SELECT nivel_comision FROM comision";
+		
+		try {
+			java.sql.Statement sentencia = cnx.createStatement();
+			ResultSet resultado = sentencia.executeQuery(sqlNivelComi);
+			while (resultado.next()) {
+				String[] ln = new String[8];
+				ln[0] = resultado.getString(1);
+				cmbxNivelComision.addItem(ln[0]);
+			}
+		}
+		catch(Exception e) {
+			
+		}
 	}
 }
