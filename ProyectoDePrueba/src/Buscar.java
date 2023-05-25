@@ -38,8 +38,11 @@ public class Buscar {
 		            setBackground(table.getSelectionBackground());
 		        } else {
 		            setForeground(table.getForeground());
-		            setBackground(UIManager.getColor("Button.background"));
+		            setBackground(table.getBackground());
 		        }
+		        
+		        ImageIcon icon = new ImageIcon("src/papelera.png");
+		        setIcon(icon);
 		        return this;
 		    }
 		}
@@ -61,9 +64,6 @@ public class Buscar {
 		    }
 
 		    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-		        Icon icono = new ImageIcon("/home/daw/Escritorio/proyecto_prog/eclipse-workspace/WorkspaceFinal/ProyectoDePrueba/src/papelera.png");
-		        button.setIcon(icono);
-		        isPushed = true;
 		        return button;
 		    }
 
