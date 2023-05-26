@@ -137,7 +137,7 @@ public class PantallaPrincipal extends JFrame {
 		submnuFichasSucursal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gestorPantallas.show(contentPane, "fichaSucu");
-				Listar.Sucursales(fichaSucu);
+				Listar.list(fichaSucu, "sucursal");
 			}
 		});
 		mnuSucursal.add(submnuFichasSucursal);
@@ -167,7 +167,7 @@ public class PantallaPrincipal extends JFrame {
 		submnuFichaEmpleados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gestorPantallas.show(contentPane, "fichaEmple");
-				Listar.Empleados(fichaEmple);
+				Listar.list(fichaEmple, "empleado");
 
 			}
 		});
