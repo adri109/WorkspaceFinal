@@ -101,4 +101,7 @@ public class Inserts {
 
 		}
 	}
+	public static void insertComision() {
+		
+	}
 }
