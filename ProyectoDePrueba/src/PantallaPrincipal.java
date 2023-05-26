@@ -41,6 +41,7 @@ import java.awt.Insets;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import javax.swing.JToggleButton;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
@@ -87,13 +88,14 @@ public class PantallaPrincipal extends JFrame {
 	public static JCheckBox chkbxEmpleActivo;
 	public static JComboBox<String> cmbxCodSucu;
 	public static JComboBox<String> cmbxNivelComision;
-	private JTextField txtNivelComi;
 	private JTextField txtAmbitoTrabajador;
 	private JTextField txtIncidenciaObj;
 	
 	//Atributos comision
 	JSpinner spnTotalVentas;
 	JSpinner spnPorcentajeComi;
+	public static JTextField txtNomComision;
+	
 
 	/**
 	 * Launch the application.
@@ -486,8 +488,10 @@ public class PantallaPrincipal extends JFrame {
 		contentPane.add(comisionEmple, "comisionEmple");
 		comisionEmple.setLayout(null);
 		
+		//COMISIONES
+		
 		Panel panel_Comisiones = new Panel();
-		panel_Comisiones.setBounds(110, 75, 637, 170);
+		panel_Comisiones.setBounds(227, 121, 637, 170);
 		panel_Comisiones.setForeground(new Color(87, 227, 137));
 		panel_Comisiones.setBackground(new Color(87, 227, 137));
 		comisionEmple.add(panel_Comisiones);
@@ -506,14 +510,16 @@ public class PantallaPrincipal extends JFrame {
 		gbc_lblNivelComi.gridy = 2;
 		panel_Comisiones.add(lblNivelComi, gbc_lblNivelComi);
 		
-		txtNivelComi = new JTextField();
-		txtNivelComi.setColumns(10);
-		GridBagConstraints gbc_txtNivelComi = new GridBagConstraints();
-		gbc_txtNivelComi.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtNivelComi.insets = new Insets(0, 0, 5, 5);
-		gbc_txtNivelComi.gridx = 1;
-		gbc_txtNivelComi.gridy = 2;
-		panel_Comisiones.add(txtNivelComi, gbc_txtNivelComi);
+		
+		
+		txtNomComision = new JTextField();
+		GridBagConstraints gbc_txtNomComision = new GridBagConstraints();
+		gbc_txtNomComision.insets = new Insets(0, 0, 5, 5);
+		gbc_txtNomComision.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtNomComision.gridx = 1;
+		gbc_txtNomComision.gridy = 2;
+		panel_Comisiones.add(txtNomComision, gbc_txtNomComision);
+		txtNomComision.setColumns(10);
 		
 		JLabel lblTotalVentas = new JLabel("TOTAL VENTAS");
 		GridBagConstraints gbc_lblTotalVentas = new GridBagConstraints();
@@ -522,7 +528,15 @@ public class PantallaPrincipal extends JFrame {
 		gbc_lblTotalVentas.gridy = 2;
 		panel_Comisiones.add(lblTotalVentas, gbc_lblTotalVentas);
 		
+		
+		SpinnerNumberModel model =new SpinnerNumberModel();
+		model.setMinimum(0);
+		SpinnerNumberModel model2 =new SpinnerNumberModel();
+		model2.setMinimum(0);
+		
+		
 		spnTotalVentas = new JSpinner();
+		spnTotalVentas.setModel(model);
 		GridBagConstraints gbc_spnTotalVentas = new GridBagConstraints();
 		gbc_spnTotalVentas.fill = GridBagConstraints.HORIZONTAL;
 		gbc_spnTotalVentas.insets = new Insets(0, 0, 5, 5);
@@ -554,7 +568,9 @@ public class PantallaPrincipal extends JFrame {
 		gbc_lblPorcentajeComision.gridy = 3;
 		panel_Comisiones.add(lblPorcentajeComision, gbc_lblPorcentajeComision);
 		
+		
 		spnPorcentajeComi = new JSpinner();
+		spnPorcentajeComi.setModel(model2);
 		GridBagConstraints gbc_spnPorcentajeComi = new GridBagConstraints();
 		gbc_spnPorcentajeComi.fill = GridBagConstraints.HORIZONTAL;
 		gbc_spnPorcentajeComi.insets = new Insets(0, 0, 5, 5);
@@ -578,6 +594,10 @@ public class PantallaPrincipal extends JFrame {
 		gbc_txtIncidenciaObj.gridx = 1;
 		gbc_txtIncidenciaObj.gridy = 4;
 		panel_Comisiones.add(txtIncidenciaObj, gbc_txtIncidenciaObj);
+		
+		JButton btnCrearComi = new JButton("CREAR");
+		btnCrearComi.setBounds(501, 337, 117, 25);
+		comisionEmple.add(btnCrearComi);
 		contentPane.add(creaSucu, "creaSucu");
 		creaSucu.setLayout(null);
 
