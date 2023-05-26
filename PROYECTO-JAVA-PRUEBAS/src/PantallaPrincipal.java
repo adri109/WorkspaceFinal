@@ -46,6 +46,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 
+@SuppressWarnings("serial")
 public class PantallaPrincipal extends JFrame {
 
 	private JPanel contentPane;
@@ -169,19 +170,7 @@ public class PantallaPrincipal extends JFrame {
 		submnuFichaEmpleados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gestorPantallas.show(contentPane, "fichaEmple");
-<<<<<<< HEAD
-<<<<<<< 127519ae447dbf416448294623f2776123c217be
-<<<<<<< 127519ae447dbf416448294623f2776123c217be
-=======
 				Listar.list(fichaEmple, "empleado");
->>>>>>> Nuevo metodo Listar.List funcional para todas las pantallas
-=======
-				Listar.Empleados(fichaEmple);
->>>>>>> Lista empleados(empezando comisiones)
-=======
-				Listar.list(fichaEmple, "empleado");
->>>>>>> main
-
 			}
 		});
 		mnuEmpleados.add(submnuFichaEmpleados);

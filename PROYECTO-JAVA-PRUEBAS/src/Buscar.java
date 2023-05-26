@@ -23,7 +23,7 @@ import javax.swing.table.TableCellRenderer;
 
 public class Buscar {
 
-    public static void sucursal(JPanel borraSucu, JTextField nom, JButton btn) {
+    public static void sucursal(JPanel panel, JTextField nom, JButton btn) {
 
         class ButtonRenderer extends JButton implements TableCellRenderer {
             public ButtonRenderer() {
@@ -61,9 +61,9 @@ public class Buscar {
                         int rowIndex = table.getSelectedRow();
                         String id = (String) table.getValueAt(rowIndex, 0);
                         eliminarRegistro(id);
-                        borraSucu.revalidate();
-                        borraSucu.repaint();
-                        sucursal(borraSucu, nom, btn);
+                        panel.revalidate();
+                        panel.repaint();
+                        sucursal(panel, nom, btn);
                         fireEditingStopped();
                     }
                 });
@@ -99,9 +99,9 @@ public class Buscar {
 
         if (!nom.getText().isBlank()) {
             Connection cnx = Conexion.conectar();
-            borraSucu.removeAll();
-            borraSucu.add(nom);
-            borraSucu.add(btn);
+            panel.removeAll();
+            panel.add(nom);
+            panel.add(btn);
             String[] columnNames = { "ID_SUCURSAL", "NOMBRE SUCURSAL", "DIRECCIÓN", "CP", "MUNICIPIO", "CIF", "CCC",
                     " " };
             DefaultTableModel model = new DefaultTableModel(columnNames, 0) {
@@ -123,7 +123,7 @@ public class Buscar {
             JScrollPane scrollPane = new JScrollPane(table);
             scrollPane.setPreferredSize(new Dimension(1000, 400));
 
-            borraSucu.add(scrollPane);
+            panel.add(scrollPane);
 
             String sql = "SELECT * FROM sucursal WHERE nombre like '%" + nom.getText() + "%' OR municipio like '%"
                     + nom.getText() + "%' OR direccion like '%" + nom.getText() + "%'";
@@ -162,8 +162,8 @@ public class Buscar {
             }
 
             table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-            borraSucu.revalidate();
-            borraSucu.repaint();
+            panel.revalidate();
+            panel.repaint();
         } else {
             JOptionPane.showMessageDialog(null, "Debes introducir un valor.");
         }

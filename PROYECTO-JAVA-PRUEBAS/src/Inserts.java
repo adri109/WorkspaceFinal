@@ -111,9 +111,9 @@ public class Inserts {
 		try {
 			nombre = PantallaPrincipal.txtNomComision.getText();
 			ambito = PantallaPrincipal.txtDniEmple.getText();
-			nivelAsist= PantallaPrincipal.txtNivelAsist.getText();
-			activo = PantallaPrincipal.chkbxEmpleActivo.isSelected();
-			fechaAlta =PantallaPrincipal.txtFechAlta.getText();
+//			nivelAsist= PantallaPrincipal.txtNivelAsist.getText();
+//			activo = PantallaPrincipal.chkbxEmpleActivo.isSelected();
+//			fechaAlta =PantallaPrincipal.txtFechAlta.getText();
 			
 			
 			
@@ -135,11 +135,11 @@ public class Inserts {
 	            PreparedStatement pstmt = cnx.prepareStatement(consulta);
 	            pstmt.setInt(1,cod[0]);
 	            pstmt.setString(2, nombre);
-	            pstmt.setString(3, dni);
-	            pstmt.setString(4, nivelAsist);
+//	            pstmt.setString(3, dni);
+//	            pstmt.setString(4, nivelAsist);
 	            pstmt.setString(5, (String) PantallaPrincipal.cmbxNivelComision.getSelectedItem());
-	            pstmt.setBoolean(6, activo);
-	            pstmt.setString(7, fechaAlta);
+//	            pstmt.setBoolean(6, activo);
+//	            pstmt.setString(7, fechaAlta);
 	            pstmt.executeUpdate();
 				
 	            JOptionPane.showMessageDialog(null, "EMPLEADO AÑADIDO");
