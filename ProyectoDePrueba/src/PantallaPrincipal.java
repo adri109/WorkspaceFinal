@@ -43,6 +43,7 @@ import java.awt.Dimension;
 import javax.swing.JToggleButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JSpinner;
 
 public class PantallaPrincipal extends JFrame {
 
@@ -86,6 +87,13 @@ public class PantallaPrincipal extends JFrame {
 	public static JCheckBox chkbxEmpleActivo;
 	public static JComboBox<String> cmbxCodSucu;
 	public static JComboBox<String> cmbxNivelComision;
+	private JTextField txtNivelComi;
+	private JTextField txtAmbitoTrabajador;
+	private JTextField txtIncidenciaObj;
+	
+	//Atributos comision
+	JSpinner spnTotalVentas;
+	JSpinner spnPorcentajeComi;
 
 	/**
 	 * Launch the application.
@@ -159,6 +167,7 @@ public class PantallaPrincipal extends JFrame {
 		submnuFichaEmpleados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gestorPantallas.show(contentPane, "fichaEmple");
+				Listar.Empleados(fichaEmple);
 
 			}
 		});
@@ -475,6 +484,100 @@ public class PantallaPrincipal extends JFrame {
 		contentPane.add(fichaEmple, "fichaEmple");
 		contentPane.add(borraEmple, "borraEmple");
 		contentPane.add(comisionEmple, "comisionEmple");
+		comisionEmple.setLayout(null);
+		
+		Panel panel_Comisiones = new Panel();
+		panel_Comisiones.setBounds(110, 75, 637, 170);
+		panel_Comisiones.setForeground(new Color(87, 227, 137));
+		panel_Comisiones.setBackground(new Color(87, 227, 137));
+		comisionEmple.add(panel_Comisiones);
+		GridBagLayout gbl_panel_Comisiones = new GridBagLayout();
+		gbl_panel_Comisiones.columnWidths = new int[]{115, 111, 0, 136, 121, 0, 0};
+		gbl_panel_Comisiones.rowHeights = new int[]{0, 19, 19, 0, 25, 0, 0};
+		gbl_panel_Comisiones.columnWeights = new double[]{1.0, 1.0, 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_Comisiones.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panel_Comisiones.setLayout(gbl_panel_Comisiones);
+		
+		JLabel lblNivelComi = new JLabel("NIVEL COMISIÓN");
+		GridBagConstraints gbc_lblNivelComi = new GridBagConstraints();
+		gbc_lblNivelComi.anchor = GridBagConstraints.EAST;
+		gbc_lblNivelComi.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNivelComi.gridx = 0;
+		gbc_lblNivelComi.gridy = 2;
+		panel_Comisiones.add(lblNivelComi, gbc_lblNivelComi);
+		
+		txtNivelComi = new JTextField();
+		txtNivelComi.setColumns(10);
+		GridBagConstraints gbc_txtNivelComi = new GridBagConstraints();
+		gbc_txtNivelComi.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtNivelComi.insets = new Insets(0, 0, 5, 5);
+		gbc_txtNivelComi.gridx = 1;
+		gbc_txtNivelComi.gridy = 2;
+		panel_Comisiones.add(txtNivelComi, gbc_txtNivelComi);
+		
+		JLabel lblTotalVentas = new JLabel("TOTAL VENTAS");
+		GridBagConstraints gbc_lblTotalVentas = new GridBagConstraints();
+		gbc_lblTotalVentas.insets = new Insets(0, 0, 5, 5);
+		gbc_lblTotalVentas.gridx = 3;
+		gbc_lblTotalVentas.gridy = 2;
+		panel_Comisiones.add(lblTotalVentas, gbc_lblTotalVentas);
+		
+		spnTotalVentas = new JSpinner();
+		GridBagConstraints gbc_spnTotalVentas = new GridBagConstraints();
+		gbc_spnTotalVentas.fill = GridBagConstraints.HORIZONTAL;
+		gbc_spnTotalVentas.insets = new Insets(0, 0, 5, 5);
+		gbc_spnTotalVentas.gridx = 4;
+		gbc_spnTotalVentas.gridy = 2;
+		panel_Comisiones.add(spnTotalVentas, gbc_spnTotalVentas);
+		
+		JLabel lblAmbitoTrabajador = new JLabel("AMBITO TRABAJADOR");
+		GridBagConstraints gbc_lblAmbitoTrabajador = new GridBagConstraints();
+		gbc_lblAmbitoTrabajador.insets = new Insets(0, 0, 5, 5);
+		gbc_lblAmbitoTrabajador.gridx = 0;
+		gbc_lblAmbitoTrabajador.gridy = 3;
+		panel_Comisiones.add(lblAmbitoTrabajador, gbc_lblAmbitoTrabajador);
+		
+		txtAmbitoTrabajador = new JTextField();
+		txtAmbitoTrabajador.setColumns(10);
+		GridBagConstraints gbc_txtAmbitoTrabajador = new GridBagConstraints();
+		gbc_txtAmbitoTrabajador.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtAmbitoTrabajador.anchor = GridBagConstraints.NORTH;
+		gbc_txtAmbitoTrabajador.insets = new Insets(0, 0, 5, 5);
+		gbc_txtAmbitoTrabajador.gridx = 1;
+		gbc_txtAmbitoTrabajador.gridy = 3;
+		panel_Comisiones.add(txtAmbitoTrabajador, gbc_txtAmbitoTrabajador);
+		
+		JLabel lblPorcentajeComision = new JLabel("% COMISIÓN");
+		GridBagConstraints gbc_lblPorcentajeComision = new GridBagConstraints();
+		gbc_lblPorcentajeComision.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPorcentajeComision.gridx = 3;
+		gbc_lblPorcentajeComision.gridy = 3;
+		panel_Comisiones.add(lblPorcentajeComision, gbc_lblPorcentajeComision);
+		
+		spnPorcentajeComi = new JSpinner();
+		GridBagConstraints gbc_spnPorcentajeComi = new GridBagConstraints();
+		gbc_spnPorcentajeComi.fill = GridBagConstraints.HORIZONTAL;
+		gbc_spnPorcentajeComi.insets = new Insets(0, 0, 5, 5);
+		gbc_spnPorcentajeComi.gridx = 4;
+		gbc_spnPorcentajeComi.gridy = 3;
+		panel_Comisiones.add(spnPorcentajeComi, gbc_spnPorcentajeComi);
+		
+		JLabel lblIncidenciaObjetivo = new JLabel("INCIDENCIA OBJETIVO");
+		GridBagConstraints gbc_lblIncidenciaObjetivo = new GridBagConstraints();
+		gbc_lblIncidenciaObjetivo.anchor = GridBagConstraints.EAST;
+		gbc_lblIncidenciaObjetivo.insets = new Insets(0, 0, 5, 5);
+		gbc_lblIncidenciaObjetivo.gridx = 0;
+		gbc_lblIncidenciaObjetivo.gridy = 4;
+		panel_Comisiones.add(lblIncidenciaObjetivo, gbc_lblIncidenciaObjetivo);
+		
+		txtIncidenciaObj = new JTextField();
+		txtIncidenciaObj.setColumns(10);
+		GridBagConstraints gbc_txtIncidenciaObj = new GridBagConstraints();
+		gbc_txtIncidenciaObj.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtIncidenciaObj.insets = new Insets(0, 0, 5, 5);
+		gbc_txtIncidenciaObj.gridx = 1;
+		gbc_txtIncidenciaObj.gridy = 4;
+		panel_Comisiones.add(txtIncidenciaObj, gbc_txtIncidenciaObj);
 		contentPane.add(creaSucu, "creaSucu");
 		creaSucu.setLayout(null);
 
