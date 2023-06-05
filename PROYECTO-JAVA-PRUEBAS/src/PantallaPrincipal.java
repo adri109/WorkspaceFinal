@@ -109,6 +109,15 @@ public class PantallaPrincipal extends JFrame {
 	public static JTextField txtAmbitoTrabajador;
 	public static JTextField txtIncidenciaObj;
 	
+	// CLIENTE
+	public static JTextField txtNomCli;
+	public static JTextField txtDNICli;
+	public static JTextField txtDirecCli;
+	public static JTextField txtPoblaCli;
+	public static JTextField txtCpCli;
+	public static JTextField txtProvCli;
+	public static JTextField txtTlfCli;
+	
 
 	/**
 	 * Launch the application.
@@ -885,6 +894,132 @@ public class PantallaPrincipal extends JFrame {
 		contentPane.add(fichaContr, "fichaContr");
 		contentPane.add(tipoContr, "tipoContr");
 		contentPane.add(creaCli, "creaCli");
+		creaCli.setLayout(null);
+		
+		Panel panel_2 = new Panel();
+		panel_2.setBounds(261, 113, 495, 181);
+		panel_2.setForeground(new Color(87, 227, 137));
+		panel_2.setBackground(new Color(87, 227, 137));
+		creaCli.add(panel_2);
+		GridBagLayout gbl_panel_2 = new GridBagLayout();
+		gbl_panel_2.columnWidths = new int[]{115, 111, 98, 109, 0};
+		gbl_panel_2.rowHeights = new int[]{19, 0, 0, 0, 0, 14, 0};
+		gbl_panel_2.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_2.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		panel_2.setLayout(gbl_panel_2);
+		
+		JLabel lblNomCli = new JLabel("Nombre Cliente");
+		GridBagConstraints gbc_lblNomCli = new GridBagConstraints();
+		gbc_lblNomCli.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNomCli.gridx = 0;
+		gbc_lblNomCli.gridy = 1;
+		panel_2.add(lblNomCli, gbc_lblNomCli);
+		
+		txtNomCli = new JTextField();
+		GridBagConstraints gbc_txtNomCli = new GridBagConstraints();
+		gbc_txtNomCli.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtNomCli.insets = new Insets(0, 0, 5, 5);
+		gbc_txtNomCli.gridx = 1;
+		gbc_txtNomCli.gridy = 1;
+		panel_2.add(txtNomCli, gbc_txtNomCli);
+		txtNomCli.setColumns(10);
+		
+		JLabel lblNewLabel_2 = new JLabel("CP");
+		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_2.gridx = 2;
+		gbc_lblNewLabel_2.gridy = 1;
+		panel_2.add(lblNewLabel_2, gbc_lblNewLabel_2);
+		
+		txtCpCli = new JTextField();
+		GridBagConstraints gbc_txtCpCli = new GridBagConstraints();
+		gbc_txtCpCli.insets = new Insets(0, 0, 5, 0);
+		gbc_txtCpCli.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtCpCli.gridx = 3;
+		gbc_txtCpCli.gridy = 1;
+		panel_2.add(txtCpCli, gbc_txtCpCli);
+		txtCpCli.setColumns(10);
+		
+		JLabel lblDNICli = new JLabel("DNI");
+		GridBagConstraints gbc_lblDNICli = new GridBagConstraints();
+		gbc_lblDNICli.insets = new Insets(0, 0, 5, 5);
+		gbc_lblDNICli.gridx = 0;
+		gbc_lblDNICli.gridy = 2;
+		panel_2.add(lblDNICli, gbc_lblDNICli);
+		
+		txtDNICli = new JTextField();
+		txtDNICli.setText("");
+		GridBagConstraints gbc_txtDNICli = new GridBagConstraints();
+		gbc_txtDNICli.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtDNICli.insets = new Insets(0, 0, 5, 5);
+		gbc_txtDNICli.gridx = 1;
+		gbc_txtDNICli.gridy = 2;
+		panel_2.add(txtDNICli, gbc_txtDNICli);
+		txtDNICli.setColumns(10);
+		
+		JLabel lblNewLabel_3 = new JLabel("Provincia");
+		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
+		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_3.gridx = 2;
+		gbc_lblNewLabel_3.gridy = 2;
+		panel_2.add(lblNewLabel_3, gbc_lblNewLabel_3);
+		
+		txtProvCli = new JTextField();
+		GridBagConstraints gbc_txtProvCli = new GridBagConstraints();
+		gbc_txtProvCli.insets = new Insets(0, 0, 5, 0);
+		gbc_txtProvCli.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtProvCli.gridx = 3;
+		gbc_txtProvCli.gridy = 2;
+		panel_2.add(txtProvCli, gbc_txtProvCli);
+		txtProvCli.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("Dirección");
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.gridx = 0;
+		gbc_lblNewLabel.gridy = 3;
+		panel_2.add(lblNewLabel, gbc_lblNewLabel);
+		
+		txtDirecCli = new JTextField();
+		GridBagConstraints gbc_txtDirecCli = new GridBagConstraints();
+		gbc_txtDirecCli.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtDirecCli.insets = new Insets(0, 0, 5, 5);
+		gbc_txtDirecCli.gridx = 1;
+		gbc_txtDirecCli.gridy = 3;
+		panel_2.add(txtDirecCli, gbc_txtDirecCli);
+		txtDirecCli.setColumns(10);
+		
+		JLabel lblNewLabel_4 = new JLabel("Tlf");
+		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
+		gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_4.gridx = 2;
+		gbc_lblNewLabel_4.gridy = 3;
+		panel_2.add(lblNewLabel_4, gbc_lblNewLabel_4);
+		
+		txtTlfCli = new JTextField();
+		GridBagConstraints gbc_txtTlfCli = new GridBagConstraints();
+		gbc_txtTlfCli.insets = new Insets(0, 0, 5, 0);
+		gbc_txtTlfCli.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtTlfCli.gridx = 3;
+		gbc_txtTlfCli.gridy = 3;
+		panel_2.add(txtTlfCli, gbc_txtTlfCli);
+		txtTlfCli.setColumns(10);
+		
+		JLabel lblNewLabel_1 = new JLabel("Población");
+		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1.gridx = 0;
+		gbc_lblNewLabel_1.gridy = 4;
+		panel_2.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		
+		txtPoblaCli = new JTextField();
+		GridBagConstraints gbc_txtPoblaCli = new GridBagConstraints();
+		gbc_txtPoblaCli.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtPoblaCli.insets = new Insets(0, 0, 5, 5);
+		gbc_txtPoblaCli.gridx = 1;
+		gbc_txtPoblaCli.gridy = 4;
+		panel_2.add(txtPoblaCli, gbc_txtPoblaCli);
+		txtPoblaCli.setColumns(10);
 		contentPane.add(borraCli, "borraCli");
 		contentPane.add(creaInci,"creaInci");
 		contentPane.add(parteAsis, "parteAsis");
