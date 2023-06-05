@@ -48,14 +48,14 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
-<<<<<<< Updated upstream
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.Font;
-=======
+
 import javax.swing.event.AncestorListener;
 import javax.swing.event.AncestorEvent;
->>>>>>> Stashed changes
+
 
 @SuppressWarnings("serial")
 public class PantallaPrincipal extends JFrame {
