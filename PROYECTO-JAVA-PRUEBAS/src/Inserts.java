@@ -129,20 +129,18 @@ public class Inserts {
 	
 				
 			
-			 String consulta = "INSERT INTO empleado (cod_sucursal,nombre,dni, nivel_asistencia, nivel_comision, activo, fec_alta) VALUES (?, ?, ?, ?, ?, ?, ?)";
+			 String consulta = "INSERT INTO comision (nivel_comision,ambito_trabajador,incidencia_objetivo, total_vtas, porcentaje_comision) VALUES (?, ?, ?, ?, ?)";
 			 
 			 
 	            PreparedStatement pstmt = cnx.prepareStatement(consulta);
-	            pstmt.setInt(1,cod[0]);
-	            pstmt.setString(2, nombre);
-//	            pstmt.setString(3, dni);
-//	            pstmt.setString(4, nivelAsist);
-	            pstmt.setString(5, (String) PantallaPrincipal.cmbxNivelComision.getSelectedItem());
-//	            pstmt.setBoolean(6, activo);
-//	            pstmt.setString(7, fechaAlta);
+	            pstmt.setString(1,PantallaPrincipal.txtNomComision.getText());
+	            pstmt.setString(2, PantallaPrincipal.txtAmbitoTrabajador.getText());
+	            pstmt.setString(3, PantallaPrincipal.txtIncidenciaObj.getText());
+	            pstmt.setInt(4, (int)PantallaPrincipal.spnTotalVentas.getValue());
+	            pstmt.setInt(5, (int)PantallaPrincipal.spnPorcentajeComi.getValue());
 	            pstmt.executeUpdate();
 				
-	            JOptionPane.showMessageDialog(null, "EMPLEADO AÑADIDO");
+	            JOptionPane.showMessageDialog(null, "COMISIÓN AÑADIDA");
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 			JOptionPane.showMessageDialog(null, "ERROR EN EL FORMATO");

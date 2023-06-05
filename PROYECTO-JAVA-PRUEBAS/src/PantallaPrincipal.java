@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import com.mysql.cj.x.protobuf.MysqlxCrud.Insert;
 import com.mysql.cj.xdevapi.Statement;
 
 import javax.swing.JFrame;
@@ -47,9 +48,14 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
+<<<<<<< Updated upstream
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.Font;
+=======
+import javax.swing.event.AncestorListener;
+import javax.swing.event.AncestorEvent;
+>>>>>>> Stashed changes
 
 @SuppressWarnings("serial")
 public class PantallaPrincipal extends JFrame {
@@ -94,13 +100,14 @@ public class PantallaPrincipal extends JFrame {
 	public static JCheckBox chkbxEmpleActivo;
 	public static JComboBox<String> cmbxCodSucu;
 	public static JComboBox<String> cmbxNivelComision;
-	private JTextField txtAmbitoTrabajador;
-	private JTextField txtIncidenciaObj;
+	
 	
 	//Atributos comision
-	JSpinner spnTotalVentas;
-	JSpinner spnPorcentajeComi;
+	public static JSpinner spnTotalVentas;
+	public static JSpinner spnPorcentajeComi;
 	public static JTextField txtNomComision;
+	public static JTextField txtAmbitoTrabajador;
+	public static JTextField txtIncidenciaObj;
 	
 
 	/**
@@ -304,6 +311,8 @@ public class PantallaPrincipal extends JFrame {
 
 		// Panel Comisiones Empleados
 		comisionEmple = new JPanel();
+		
+			
 
 		// Panel Crear Sucursal
 		creaSucu = new JPanel();
@@ -618,6 +627,11 @@ public class PantallaPrincipal extends JFrame {
 		panel_Comisiones.add(txtIncidenciaObj, gbc_txtIncidenciaObj);
 		
 		JButton btnCrearComi = new JButton("CREAR");
+		btnCrearComi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Inserts.insertComision();
+			}
+		});
 		btnCrearComi.setBounds(501, 337, 117, 25);
 		comisionEmple.add(btnCrearComi);
 		contentPane.add(creaSucu, "creaSucu");
