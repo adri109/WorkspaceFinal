@@ -161,7 +161,7 @@ public class Inserts {
 		Connection cnx = Conexion.conectar();
 		try {
 			nombre = PantallaPrincipal.txtNomSucu.getText();
-			dni = PantallaPrincipal.txt
+			dni = PantallaPrincipal.txtNomCli;
 			fecha_alta = "" + LocalDate.now();
 			direccion = PantallaPrincipal.txtDirSucu.getText();
 			cp = Integer.parseInt(PantallaPrincipal.txtCpSucu.getText());
