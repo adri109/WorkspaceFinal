@@ -7,10 +7,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JMenu;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -45,6 +47,9 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.Font;
 
 @SuppressWarnings("serial")
 public class PantallaPrincipal extends JFrame {
@@ -374,11 +379,22 @@ public class PantallaPrincipal extends JFrame {
 		panel_1.add(lblDniEmple, gbc_lblDniEmple);
 		
 		txtDniEmple = new JTextField();
+		txtDniEmple.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+				if (txtDniEmple.getText().length()== 9) { 
+
+			         e.consume();
+			}
+			
+			}
+		});
 		txtDniEmple.setColumns(10);
 		GridBagConstraints gbc_txtDniEmple = new GridBagConstraints();
 		gbc_txtDniEmple.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtDniEmple.anchor = GridBagConstraints.NORTH;
-		gbc_txtDniEmple.insets = new Insets(0, 0, 5, 0);
+		gbc_txtDniEmple.insets = new Insets(0, 0, 5, 5);
 		gbc_txtDniEmple.gridx = 4;
 		gbc_txtDniEmple.gridy = 2;
 		panel_1.add(txtDniEmple, gbc_txtDniEmple);
@@ -402,25 +418,6 @@ public class PantallaPrincipal extends JFrame {
 		gbc_txtFechAlta.gridx = 1;
 		gbc_txtFechAlta.gridy = 3;
 		panel_1.add(txtFechAlta, gbc_txtFechAlta);
-//		String regex = "^(0[1-9]|1\\d|2\\d|3[01])/(0[1-9]|1[0-2])/\\d{4}$";
-//		Pattern pattern = Pattern.compile(regex);
-//        Matcher matcher = pattern.matcher(txtFechAlta.getText());
-		
-		
-		
-		JLabel lblActivo = new JLabel("ACTIVO");
-		GridBagConstraints gbc_lblActivo = new GridBagConstraints();
-		gbc_lblActivo.insets = new Insets(0, 0, 5, 5);
-		gbc_lblActivo.gridx = 3;
-		gbc_lblActivo.gridy = 3;
-		panel_1.add(lblActivo, gbc_lblActivo);
-		
-		chkbxEmpleActivo = new JCheckBox("");
-		GridBagConstraints gbc_chkbxEmpleActivo = new GridBagConstraints();
-		gbc_chkbxEmpleActivo.insets = new Insets(0, 0, 5, 0);
-		gbc_chkbxEmpleActivo.gridx = 4;
-		gbc_chkbxEmpleActivo.gridy = 3;
-		panel_1.add(chkbxEmpleActivo, gbc_chkbxEmpleActivo);
 		
 		JLabel lblNivelAsist = new JLabel("NIVEL ASISTENCIA");
 		GridBagConstraints gbc_lblNivelAsist = new GridBagConstraints();
@@ -438,22 +435,25 @@ public class PantallaPrincipal extends JFrame {
 		gbc_txtNivelAsist.gridy = 4;
 		panel_1.add(txtNivelAsist, gbc_txtNivelAsist);
 		txtNivelAsist.setColumns(10);
+		//		String regex = "^(0[1-9]|1\\d|2\\d|3[01])/(0[1-9]|1[0-2])/\\d{4}$";
+		//		Pattern pattern = Pattern.compile(regex);
+		//        Matcher matcher = pattern.matcher(txtFechAlta.getText());
+				
+				
+				
+				JLabel lblActivo = new JLabel("ACTIVO");
+				GridBagConstraints gbc_lblActivo = new GridBagConstraints();
+				gbc_lblActivo.insets = new Insets(0, 0, 5, 5);
+				gbc_lblActivo.gridx = 3;
+				gbc_lblActivo.gridy = 4;
+				panel_1.add(lblActivo, gbc_lblActivo);
 		
-		JLabel lblNivelComision = new JLabel("NIVEL COMISIÓN");
-		GridBagConstraints gbc_lblNivelComision = new GridBagConstraints();
-		gbc_lblNivelComision.anchor = GridBagConstraints.EAST;
-		gbc_lblNivelComision.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNivelComision.gridx = 3;
-		gbc_lblNivelComision.gridy = 4;
-		panel_1.add(lblNivelComision, gbc_lblNivelComision);
-		
-		cmbxNivelComision = new JComboBox<String>();
-		GridBagConstraints gbc_cmbxNivelComision = new GridBagConstraints();
-		gbc_cmbxNivelComision.insets = new Insets(0, 0, 5, 0);
-		gbc_cmbxNivelComision.fill = GridBagConstraints.HORIZONTAL;
-		gbc_cmbxNivelComision.gridx = 4;
-		gbc_cmbxNivelComision.gridy = 4;
-		panel_1.add(cmbxNivelComision, gbc_cmbxNivelComision);
+		chkbxEmpleActivo = new JCheckBox("");
+		GridBagConstraints gbc_chkbxEmpleActivo = new GridBagConstraints();
+		gbc_chkbxEmpleActivo.insets = new Insets(0, 0, 5, 5);
+		gbc_chkbxEmpleActivo.gridx = 4;
+		gbc_chkbxEmpleActivo.gridy = 4;
+		panel_1.add(chkbxEmpleActivo, gbc_chkbxEmpleActivo);
 		
 		
 		
@@ -473,12 +473,34 @@ public class PantallaPrincipal extends JFrame {
 		gbc_cmbxCodSucu.gridy = 5;
 		panel_1.add(cmbxCodSucu, gbc_cmbxCodSucu);
 		
+		JLabel lblNivelComision = new JLabel("NIVEL COMISIÓN");
+		GridBagConstraints gbc_lblNivelComision = new GridBagConstraints();
+		gbc_lblNivelComision.anchor = GridBagConstraints.EAST;
+		gbc_lblNivelComision.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNivelComision.gridx = 3;
+		gbc_lblNivelComision.gridy = 5;
+		panel_1.add(lblNivelComision, gbc_lblNivelComision);
+		
+		cmbxNivelComision = new JComboBox<String>();
+		GridBagConstraints gbc_cmbxNivelComision = new GridBagConstraints();
+		gbc_cmbxNivelComision.insets = new Insets(0, 0, 5, 5);
+		gbc_cmbxNivelComision.fill = GridBagConstraints.HORIZONTAL;
+		gbc_cmbxNivelComision.gridx = 4;
+		gbc_cmbxNivelComision.gridy = 5;
+		panel_1.add(cmbxNivelComision, gbc_cmbxNivelComision);
+		
 		
 		
 		JButton btnCreaEmple = new JButton("CREAR");
 		btnCreaEmple.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Inserts.insertEmpleado();
+				
+				if(txtDniEmple.getText().length()== 9) {
+					Inserts.insertEmpleado();
+				}else {
+					JOptionPane.showMessageDialog(null, "LONGITUD DE DNI NO VÁLIDO");
+				}
+				
 			}
 		});
 		btnCreaEmple.setBounds(490, 327, 117, 25);
@@ -605,14 +627,22 @@ public class PantallaPrincipal extends JFrame {
 		panel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		panel.setBackground(new Color(87, 227, 137));
 		panel.setForeground(new Color(87, 227, 137));
-		panel.setBounds(241, 157, 492, 129);
+		panel.setBounds(163, 157, 685, 190);
 		creaSucu.add(panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{115, 111, 0, 107, 121, 0};
+		gbl_panel.columnWidths = new int[]{115, 111, 0, 107, 210, 0};
 		gbl_panel.rowHeights = new int[]{19, 0, 19, 19, 25, 25, 0, 0};
 		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
+		
+		JLabel lblNoSeDebe = new JLabel("No se debe dejar ningún campo vacío");
+		lblNoSeDebe.setFont(new Font("Dialog", Font.BOLD, 10));
+		GridBagConstraints gbc_lblNoSeDebe = new GridBagConstraints();
+		gbc_lblNoSeDebe.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNoSeDebe.gridx = 1;
+		gbc_lblNoSeDebe.gridy = 0;
+		panel.add(lblNoSeDebe, gbc_lblNoSeDebe);
 
 		JLabel lblNombreSucu = new JLabel("NOMBRE");
 		GridBagConstraints gbc_lblNombreSucu = new GridBagConstraints();
@@ -623,7 +653,8 @@ public class PantallaPrincipal extends JFrame {
 
 		txtNomSucu = new JTextField();
 		GridBagConstraints gbc_txtNomSucu = new GridBagConstraints();
-		gbc_txtNomSucu.anchor = GridBagConstraints.NORTHWEST;
+		gbc_txtNomSucu.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txtNomSucu.anchor = GridBagConstraints.NORTH;
 		gbc_txtNomSucu.insets = new Insets(0, 0, 5, 5);
 		gbc_txtNomSucu.gridx = 1;
 		gbc_txtNomSucu.gridy = 2;
@@ -655,6 +686,24 @@ public class PantallaPrincipal extends JFrame {
 		panel.add(lblCP, gbc_lblCP);
 
 		txtCpSucu = new JTextField();
+		txtCpSucu.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+				if (txtCpSucu.getText().length()== 5) {
+					e.consume();
+				}
+				
+				if(txtCpSucu.getText().length()<= 4) {
+					txtCpSucu.setBackground(Color.RED);
+				}else if(txtCpSucu.getText().length()== 5) {
+					txtCpSucu.setBackground(Color.WHITE);
+				}
+
+			         
+			}
+			
+		});
 		GridBagConstraints gbc_txtCpSucu = new GridBagConstraints();
 		gbc_txtCpSucu.anchor = GridBagConstraints.NORTH;
 		gbc_txtCpSucu.fill = GridBagConstraints.HORIZONTAL;
@@ -680,48 +729,121 @@ public class PantallaPrincipal extends JFrame {
 		gbc_txtMunicipioSucu.gridy = 3;
 		panel.add(txtMunicipioSucu, gbc_txtMunicipioSucu);
 		txtMunicipioSucu.setColumns(10);
+		
+		JLabel lblCarcteresExactos_1 = new JLabel("5 carácteres exactos");
+		lblCarcteresExactos_1.setFont(new Font("Dialog", Font.BOLD, 10));
+		GridBagConstraints gbc_lblCarcteresExactos_1 = new GridBagConstraints();
+		gbc_lblCarcteresExactos_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCarcteresExactos_1.gridx = 1;
+		gbc_lblCarcteresExactos_1.gridy = 4;
+		panel.add(lblCarcteresExactos_1, gbc_lblCarcteresExactos_1);
+						
+								txtCifSucu = new JTextField();
+								txtCifSucu.addKeyListener(new KeyAdapter() {
+									@Override
+									public void keyTyped(KeyEvent e) {
+										
+										if (txtCifSucu.getText().length()== 9) {
+											e.consume();
+										}
 
-		JLabel lblCIF = new JLabel("CIF");
-		GridBagConstraints gbc_lblCIF = new GridBagConstraints();
-		gbc_lblCIF.insets = new Insets(0, 0, 5, 5);
-		gbc_lblCIF.gridx = 0;
-		gbc_lblCIF.gridy = 4;
-		panel.add(lblCIF, gbc_lblCIF);
-
-		txtCifSucu = new JTextField();
-		GridBagConstraints gbc_txtCifSucu = new GridBagConstraints();
-		gbc_txtCifSucu.anchor = GridBagConstraints.NORTH;
-		gbc_txtCifSucu.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtCifSucu.insets = new Insets(0, 0, 5, 5);
-		gbc_txtCifSucu.gridx = 1;
-		gbc_txtCifSucu.gridy = 4;
-		panel.add(txtCifSucu, gbc_txtCifSucu);
-		txtCifSucu.setColumns(10);
-
-		JLabel lblCCC = new JLabel("C.C.C.");
-		GridBagConstraints gbc_lblCCC = new GridBagConstraints();
-		gbc_lblCCC.insets = new Insets(0, 0, 5, 5);
-		gbc_lblCCC.gridx = 3;
-		gbc_lblCCC.gridy = 4;
-		panel.add(lblCCC, gbc_lblCCC);
-
-		txtCccSucu = new JTextField();
-		GridBagConstraints gbc_txtCccSucu = new GridBagConstraints();
-		gbc_txtCccSucu.anchor = GridBagConstraints.NORTH;
-		gbc_txtCccSucu.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtCccSucu.insets = new Insets(0, 0, 5, 0);
-		gbc_txtCccSucu.gridx = 4;
-		gbc_txtCccSucu.gridy = 4;
-		panel.add(txtCccSucu, gbc_txtCccSucu);
-		txtCccSucu.setColumns(10);
+									         if(txtCifSucu.getText().length()< 9) {
+									        	 txtCifSucu.setBackground(Color.red);	 
+												}else {
+													txtCifSucu.setBackground(Color.WHITE);
+												}
+										
+									}
+								});
+								
+										JLabel lblCIF = new JLabel("CIF");
+										GridBagConstraints gbc_lblCIF = new GridBagConstraints();
+										gbc_lblCIF.insets = new Insets(0, 0, 5, 5);
+										gbc_lblCIF.gridx = 0;
+										gbc_lblCIF.gridy = 5;
+										panel.add(lblCIF, gbc_lblCIF);
+								GridBagConstraints gbc_txtCifSucu = new GridBagConstraints();
+								gbc_txtCifSucu.anchor = GridBagConstraints.NORTH;
+								gbc_txtCifSucu.fill = GridBagConstraints.HORIZONTAL;
+								gbc_txtCifSucu.insets = new Insets(0, 0, 5, 5);
+								gbc_txtCifSucu.gridx = 1;
+								gbc_txtCifSucu.gridy = 5;
+								panel.add(txtCifSucu, gbc_txtCifSucu);
+								txtCifSucu.setColumns(10);
+								
+										txtCccSucu = new JTextField();
+										txtCccSucu.addKeyListener(new KeyAdapter() {
+											@Override
+											public void keyTyped(KeyEvent e) {
+												
+												if (txtCccSucu.getText().length()== 24) {
+													e.consume();
+												}
+												if(txtCccSucu.getText().length()< 24) {
+													txtCccSucu.setBackground(Color.red);	 
+													}else {
+														txtCccSucu.setBackground(Color.WHITE);
+													}
+												
+											}
+										});
+										
+												JLabel lblCCC = new JLabel("C.C.C.");
+												GridBagConstraints gbc_lblCCC = new GridBagConstraints();
+												gbc_lblCCC.insets = new Insets(0, 0, 5, 5);
+												gbc_lblCCC.gridx = 3;
+												gbc_lblCCC.gridy = 5;
+												panel.add(lblCCC, gbc_lblCCC);
+										GridBagConstraints gbc_txtCccSucu = new GridBagConstraints();
+										gbc_txtCccSucu.anchor = GridBagConstraints.NORTH;
+										gbc_txtCccSucu.fill = GridBagConstraints.HORIZONTAL;
+										gbc_txtCccSucu.insets = new Insets(0, 0, 5, 0);
+										gbc_txtCccSucu.gridx = 4;
+										gbc_txtCccSucu.gridy = 5;
+										panel.add(txtCccSucu, gbc_txtCccSucu);
+										txtCccSucu.setColumns(10);
+								
+								JLabel lblCarcteresExactos = new JLabel("9 carácteres exactos");
+								lblCarcteresExactos.setFont(new Font("Dialog", Font.BOLD, 10));
+								GridBagConstraints gbc_lblCarcteresExactos = new GridBagConstraints();
+								gbc_lblCarcteresExactos.insets = new Insets(0, 0, 0, 5);
+								gbc_lblCarcteresExactos.gridx = 1;
+								gbc_lblCarcteresExactos.gridy = 6;
+								panel.add(lblCarcteresExactos, gbc_lblCarcteresExactos);
+								
+								JLabel lblCarcteresSin = new JLabel("24 carácteres sin espacios");
+								lblCarcteresSin.setFont(new Font("Dialog", Font.BOLD, 10));
+								GridBagConstraints gbc_lblCarcteresSin = new GridBagConstraints();
+								gbc_lblCarcteresSin.gridx = 4;
+								gbc_lblCarcteresSin.gridy = 6;
+								panel.add(lblCarcteresSin, gbc_lblCarcteresSin);
 
 		// Acción "Crear Sucursal"
 		JButton btnCreaSucu = new JButton("CREAR");
-		btnCreaSucu.setBounds(427, 318, 124, 25);
+		btnCreaSucu.setBounds(422, 353, 124, 25);
 		creaSucu.add(btnCreaSucu);
 		btnCreaSucu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Inserts.insertSucursal();
+				
+				if(txtCifSucu.getText().length()== 9 && txtCpSucu.getText().length()== 5 && txtCccSucu.getText().length()== 24 
+						&& txtNomSucu.getText().length() > 0 && txtDirSucu.getText().length() > 0 && txtMunicipioSucu.getText().length() > 0 ) {
+					Inserts.insertSucursal(); 
+					
+				}else if(txtCifSucu.getText().length() != 9) {
+					JOptionPane.showMessageDialog(null, "ERROR EN LA LONGITUD DEL CIF DE LA SUCURSAL");
+				}else if(txtCpSucu.getText().length() != 5) {
+					JOptionPane.showMessageDialog(null, "ERROR EN LA LONGITUD DEL CÓDIGO POSTAL DE LA SUCURSAL");
+				}else if(txtCccSucu.getText().length() != 24) {
+					JOptionPane.showMessageDialog(null, "ERROR EN LA LONGITUD DEL CCC DE LA SUCURSAL");
+				}else if(txtNomSucu.getText().length() == 0) {
+					JOptionPane.showMessageDialog(null, "ERROR EN LA LONGITUD DEL NOMBRE DE LA SUCURSAL");
+				}else if(txtDirSucu.getText().length() == 0) {
+					JOptionPane.showMessageDialog(null, "ERROR EN LA LONGITUD DE LA DIRECCIÓN DE LA SUCURSAL");
+				}else if(txtMunicipioSucu.getText().length() == 0) {
+					JOptionPane.showMessageDialog(null, "ERROR EN LA LONGITUD DEL MUNICIPIO DE LA SUCURSAL");
+				}
+				
+				
 			}
 		});
 		
