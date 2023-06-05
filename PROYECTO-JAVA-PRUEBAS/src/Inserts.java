@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
 import javax.swing.JOptionPane;
 
@@ -101,6 +102,7 @@ public class Inserts {
 
 		}
 	}
+	
 	public static void insertComision() {
 		String nombre, ambito, incidencia_objetivo;
 		int total, porcentaje;
@@ -142,6 +144,47 @@ public class Inserts {
 				
 	            JOptionPane.showMessageDialog(null, "COMISIÓN AÑADIDA");
 		} catch (SQLException e1) {
+			e1.printStackTrace();
+			JOptionPane.showMessageDialog(null, "ERROR EN EL FORMATO");
+			System.err.println("LA CONSULTA NO HA PODIDO SER EJECUTADA.");
+		} catch (NumberFormatException e2) {
+			JOptionPane.showMessageDialog(null, "ERROR EN EL FORMATO");
+
+		}
+	}
+	
+	@SuppressWarnings("deprecation")
+	public static void insertCliente() {
+		String nombre, fecha_alta, dni, direccion, poblacion, provincia, tlfn_fijo;
+		int cp;
+	
+		Connection cnx = Conexion.conectar();
+		try {
+			nombre = PantallaPrincipal.txtNomSucu.getText();
+			dni = PantallaPrincipal.txt
+			fecha_alta = "" + LocalDate.now();
+			direccion = PantallaPrincipal.txtDirSucu.getText();
+			cp = Integer.parseInt(PantallaPrincipal.txtCpSucu.getText());
+			poblacion = PantallaPrincipal.txtMunicipioSucu.getText();
+			provincia = PantallaPrincipal.txtCifSucu.getText();
+			tlfn_fijo = PantallaPrincipal.txtCccSucu.getText();
+			
+			java.sql.Statement sentencia = cnx.createStatement();
+			 String consulta = "INSERT INTO empleado (nombre, dni, fecha_alta, direccion, cp, poblacion, provincia, tlfn_fijo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	            PreparedStatement pstmt = cnx.prepareStatement(consulta);
+	            pstmt.setString(1, nombre);
+	            pstmt.setString(2, dni);
+	            pstmt.setString(3, fecha_alta);
+	            pstmt.setString(4, direccion);
+	            pstmt.setInt(5, cp);
+	            pstmt.setString(6, poblacion);
+	            pstmt.setString(6, provincia);
+	            pstmt.setString(8, tlfn_fijo);
+	            pstmt.executeUpdate();
+				
+	            JOptionPane.showMessageDialog(null, "SUCURSAL AÑADIDA");
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			JOptionPane.showMessageDialog(null, "ERROR EN EL FORMATO");
 			System.err.println("LA CONSULTA NO HA PODIDO SER EJECUTADA.");
